@@ -1,9 +1,15 @@
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Breeds from "./components/Breeds/Breeds";
+import CreateBreeds from "./components/CreateBreeds/CreateBreeds";
 
 function App() {
   return (
     <div className="App">
-      <h1>Henry Dogs</h1>
+      <Routes>
+        <Route exact path={"/breeds"} element={<Breeds />} />
+        <Route path={"/createBreeds"} element={<CreateBreeds />} />
+      </Routes>
     </div>
   );
 }
