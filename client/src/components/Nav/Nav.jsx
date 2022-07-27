@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import arrow from "../../assets/arrow.svg";
+import hamburguer from "../../assets/menu.svg";
 import "./Nav.css";
 
 export default function Nav() {
@@ -35,7 +37,7 @@ export default function Nav() {
       };
 
       window.addEventListener("resize", () => {
-        if (window.innerWidth > 800) {
+        if (window.innerWidth > 1125) {
           deleteStyleHeight();
           if (list.classList.contains("menu__links--show"))
             list.classList.remove("menu__links--show");
@@ -44,7 +46,7 @@ export default function Nav() {
         }
       });
 
-      if (window.innerWidth <= 800) {
+      if (window.innerWidth <= 1125) {
         addClick();
       }
 
@@ -70,7 +72,7 @@ export default function Nav() {
             <li className="menu__item menu__item--show">
               <a href="#" className="menu__link">
                 Temperaments
-                {/* <img src="assets/arrow.svg" className="menu__arrow"> */}
+                <img src={arrow} className="menu__arrow" />
               </a>
 
               <ul className="menu__nesting">
@@ -95,7 +97,7 @@ export default function Nav() {
             <li className="menu__item  menu__item--show">
               <a href="#" className="menu__link">
                 Ordenar
-                {/* <img src="assets/arrow.svg" className="menu__arrow"> */}
+                <img src={arrow} className="menu__arrow" />
               </a>
 
               <ul className="menu__nesting">
@@ -115,7 +117,7 @@ export default function Nav() {
             <li className="menu__item  menu__item--show">
               <a href="#" className="menu__link">
                 Alphabetic
-                {/* <img src="assets/arrow.svg" className="menu__arrow"> */}
+                <img src={arrow} className="menu__arrow" />
               </a>
 
               <ul className="menu__nesting">
@@ -140,7 +142,7 @@ export default function Nav() {
           </ul>
 
           <div className="menu__hamburguer">
-            <img src="assets/menu.svg" className="menu__img" />
+            <img src={hamburguer} className="menu__img" />
           </div>
         </section>
       </nav>

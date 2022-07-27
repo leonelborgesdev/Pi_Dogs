@@ -1,12 +1,16 @@
+import { GET_ALL_BREEDS } from "../actions/types";
 const initialState = {
-  country: {},
+  breeds: [],
+  breedsTable: [],
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 1:
+    case GET_ALL_BREEDS:
       return {
         ...state,
+        breeds: action.payload,
+        breedsTable: action.payload,
       };
     default:
       return {
