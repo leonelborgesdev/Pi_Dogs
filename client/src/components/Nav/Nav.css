@@ -6,7 +6,12 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.menu_busqueda{    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem
+}
 .Navbar{
     font-family: 'Poppins', sans-serif;
 }

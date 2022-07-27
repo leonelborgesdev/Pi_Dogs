@@ -44,18 +44,19 @@ async function getDogById(req, res) {
         "https://api.thedogapi.com/v1/breeds"
       );
       await allDogs.map(async (elem) => {
+        console.log(elem[0]);
         const breeds1 = await Dog.create(elem[1]);
-        if (elem[0].length > 0) {
-          console.log(elem[0]);
-          await breeds1.setTemperaments(elem[0]);
-        }
+        await breeds1.setTemperaments(elem[0]);
       });
+      await Dog.findAll({ include: Temperament });
+      await Dog.findAll({ include: Temperament });
+      await Dog.findAll({ include: Temperament });
     }
     const dogBD = await Dog.findAll({
       include: Temperament,
       where: { id: idBreed },
     });
-    return res.status(200).json(dogBD);
+    return res.status(200).json(dogBD[0]);
   } catch (error) {
     return res.status(404).json({ message: error });
   }

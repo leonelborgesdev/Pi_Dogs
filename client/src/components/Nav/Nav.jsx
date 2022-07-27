@@ -63,10 +63,10 @@ export default function Nav() {
             Home
           </Link>
 
-          <p className="menu__logo">
-            Nombre
+          <div className="menu_busqueda">
+            <p>Nombre</p>
             <input className="text_buscar_nombre" type="text" />
-          </p>
+          </div>
 
           <ul className="menu__links">
             <li className="menu__item menu__item--show">
