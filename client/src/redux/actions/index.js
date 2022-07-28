@@ -87,6 +87,26 @@ export const getBreedByTemperament = (Breeds, Temperament) => {
     payload: filterBreeds,
   };
 };
+export const orderAlphabetic = (asc_desc, column, breeds) => {
+  let orderCountries;
+  if (asc_desc) {
+    orderCountries = breeds.sort((a, b) => {
+      if (a[column] < b[column]) return -1;
+      if (a[column] < b[column]) return 1;
+      return 0;
+    });
+  } else {
+    orderCountries = breeds.sort((a, b) => {
+      if (a[column] > b[column]) return -1;
+      if (a[column] > b[column]) return 1;
+      return 0;
+    });
+  }
+  return {
+    type: ORDENAMIENTO_ALFABETICO,
+    payload: orderCountries,
+  };
+};
 export const addBreed = (breed) => {
   return async function () {
     const response = await fetch(`${api}/breeds`, {
