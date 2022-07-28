@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import arrow from "../../assets/arrow.svg";
@@ -63,6 +63,7 @@ export default function Nav() {
   }, []);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [ordenar, setOrdenar] = useState({ name: "name" });
   const { temperaments, breedsTable, breeds } = useSelector((state) => state);
   const handleInputChange = (e) => {
     const { value } = e.target;
@@ -75,6 +76,11 @@ export default function Nav() {
   };
 
   const handleInputChangeOrder = (column, asc_des) => {
+    setOrdenar({
+      ...ordenar,
+      ["name"]: column,
+    });
+    console.log(asc_des, column);
     dispatch(orderAlphabetic(asc_des, column, [...breeds]));
     navigate("/breeds");
   };
@@ -129,12 +135,22 @@ export default function Nav() {
               </a>
 
               <ul className="menu__nesting">
-                <li className="menu__inside">
+                <li
+                  className="menu__inside"
+                  onClick={() => {
+                    handleInputChangeOrder("name", true);
+                  }}
+                >
                   <a href="#" className="menu__link menu__link--inside">
                     Breed
                   </a>
                 </li>
-                <li className="menu__inside">
+                <li
+                  className="menu__inside"
+                  onClick={() => {
+                    handleInputChangeOrder("weight", true);
+                  }}
+                >
                   <a href="#" className="menu__link menu__link--inside">
                     Weight
                   </a>
@@ -152,7 +168,7 @@ export default function Nav() {
                 <li
                   className="menu__inside"
                   onClick={() => {
-                    handleInputChangeOrder("name", true);
+                    handleInputChangeOrder(ordenar.name, true);
                   }}
                 >
                   <a href="#" className="menu__link menu__link--inside">
@@ -162,7 +178,7 @@ export default function Nav() {
                 <li
                   className="menu__inside"
                   onClick={() => {
-                    handleInputChangeOrder("name", false);
+                    handleInputChangeOrder(ordenar.name, false);
                   }}
                 >
                   <a href="#" className="menu__link menu__link--inside">
