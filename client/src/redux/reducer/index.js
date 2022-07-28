@@ -5,6 +5,7 @@ import {
   CARGAR_TEMEPERAMENTOS,
   GET_BREEDS_BY_NAME,
   GET_BREEDS_BY_TEMPERAMENT,
+  ORDENAMIENTO_ALFABETICO,
 } from "../actions/types";
 const initialState = {
   breeds: [],
@@ -43,6 +44,11 @@ const rootReducer = (state = initialState, action) => {
         breeds: action.payload,
       };
     case GET_BREEDS_BY_TEMPERAMENT:
+      return {
+        ...state,
+        breeds: action.payload,
+      };
+    case ORDENAMIENTO_ALFABETICO:
       return {
         ...state,
         breeds: action.payload,
