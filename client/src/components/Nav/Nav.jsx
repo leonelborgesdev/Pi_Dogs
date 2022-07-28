@@ -59,7 +59,7 @@ export default function Nav() {
   }, []);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { temperaments, breedsTable } = useSelector((state) => state);
+  const { temperaments, breedsTable, breeds } = useSelector((state) => state);
   const handleInputChange = (e) => {
     const { value } = e.target;
     console.log(value);
@@ -68,6 +68,11 @@ export default function Nav() {
   const handleChangeTemperament = (Temperament) => {
     dispatch(getBreedByTemperament(breedsTable, Temperament));
     navigate("/breeds");
+  };
+
+  const handleInputChangeOrder = (column, asc_des) => {
+    orderAlphabetic(asc_des, column, [...breeds]);
+    navigate("/countries");
   };
   return (
     <div className="Navbar">
@@ -113,7 +118,12 @@ export default function Nav() {
               </ul>
             </li>
 
-            <li className="menu__item  menu__item--show">
+            <li
+              className="menu__item  menu__item--show"
+              onClick={() => {
+                handleInputChangeOrder("name", true);
+              }}
+            >
               <a href="#" className="menu__link">
                 Ordenar
                 <img src={arrow} className="menu__arrow" />
