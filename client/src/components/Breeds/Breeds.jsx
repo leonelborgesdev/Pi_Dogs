@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Nav from "../Nav/Nav";
-import { get_all_breeds } from "../../redux/actions/index";
+import { getAllTemperaments, get_all_breeds } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { CardBreed } from "../Cards/CardBreed";
 import "./Breeds.css";
@@ -10,6 +10,7 @@ const Breeds = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(get_all_breeds());
+    dispatch(getAllTemperaments());
   }, []);
   const { breeds } = useSelector((state) => state);
   return (

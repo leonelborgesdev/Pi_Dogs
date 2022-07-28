@@ -16,7 +16,7 @@ export const BreedDetail = () => {
   return (
     <div>
       <Nav />
-      <h1>BreedDetail</h1>
+      <h1>Breed Detail</h1>
       {breed ? (
         <div className="breed_detail">
           <img src={breed.image} width="450px" height="350px" />

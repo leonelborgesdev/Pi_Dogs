@@ -1,0 +1,71 @@
+.create_breeds{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_create{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    margin: 10px;
+    gap: 2rem
+}
+.create_item{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 1.5rem
+}
+.create_item > input{
+    width: 100%;
+}
+.create_item > label{
+    width: 100px;
+}
+.form_create{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.table_temperaments{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    height: 230px;
+    width: 400px;
+    overflow: auto;
+}
+.table_temperaments::-webkit-scrollbar:vertical {
+    width:10px;
+}
+
+.label_table :hover{
+    display: flex;
+    padding: 0px 0.7rem;
+    justify-content: center;
+    border-color: aqua;
+    background-color: rgba(9, 223, 27, 0.466);
+    border-radius: 15px;
+    /* box-shadow: 0px 0px 15px rgba(0, 0, 0, 1.5); */
+}
+.label_table_sel{
+    display: flex;
+    padding: 0px 0.7rem;
+    justify-content: center;
+    border: 1px solid white;
+    flex-direction: column;
+    width: 100%;
+    background-color: rgba(9, 223, 27, 0.466);
+    border-radius: 15px;
+}
+.label_table{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    border-radius: 15px;
+}
+

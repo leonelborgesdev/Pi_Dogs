@@ -1,8 +1,15 @@
-import { GET_ALL_BREEDS, GET_BREED_BY_ID } from "../actions/types";
+import {
+  GET_ALL_BREEDS,
+  GET_ALL_TEMPERAMENTS,
+  GET_BREED_BY_ID,
+  CARGAR_TEMEPERAMENTOS,
+} from "../actions/types";
 const initialState = {
   breeds: [],
   breedsTable: [],
   breed: {},
+  temperaments: [],
+  labelSelect: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -17,6 +24,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         breed: action.payload,
+      };
+    case GET_ALL_TEMPERAMENTS:
+      return {
+        ...state,
+        temperaments: action.payload,
+      };
+    case CARGAR_TEMEPERAMENTOS:
+      return {
+        ...state,
+        labelSelect: action.payload,
       };
     default:
       return {

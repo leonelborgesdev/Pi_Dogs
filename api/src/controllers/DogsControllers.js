@@ -17,9 +17,6 @@ async function getAllDogs(req, res) {
         const breeds1 = await Dog.create(elem[1]);
         await breeds1.setTemperaments(elem[0]);
       });
-      await Dog.findAll({ include: Temperament });
-      await Dog.findAll({ include: Temperament });
-      await Dog.findAll({ include: Temperament });
     }
     if (name) {
       const DogDB = await Dog.findAll({
@@ -48,9 +45,6 @@ async function getDogById(req, res) {
         const breeds1 = await Dog.create(elem[1]);
         await breeds1.setTemperaments(elem[0]);
       });
-      await Dog.findAll({ include: Temperament });
-      await Dog.findAll({ include: Temperament });
-      await Dog.findAll({ include: Temperament });
     }
     const dogBD = await Dog.findAll({
       include: Temperament,
@@ -61,13 +55,13 @@ async function getDogById(req, res) {
     return res.status(404).json({ message: error });
   }
 }
-async function addDog(req, res) {
+async function addBreed(req, res) {
   const { id, name, height, weight, life_span, temperaments } = req.body;
-  let dog = { id, name, height, weight, life_span, image: "" };
-  if (dog.name) {
-    const dog1 = await Dog.create(dog);
-    await dog1.setTemperaments(temperaments);
-    return res.status(200).json(dog);
+  let breed = { id, name, height, weight, life_span, image: "" };
+  if (breed.name) {
+    const breed1 = await Dog.create(dog);
+    await breed1.setTemperaments(temperaments);
+    return res.status(200).json(breed);
   } else {
     return res
       .status(404)
@@ -75,4 +69,4 @@ async function addDog(req, res) {
   }
 }
 
-module.exports = { getAllDogs, getDogById, addDog };
+module.exports = { getAllDogs, getDogById, addBreed };

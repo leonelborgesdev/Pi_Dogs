@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import arrow from "../../assets/arrow.svg";
 import hamburguer from "../../assets/menu.svg";
@@ -37,7 +38,7 @@ export default function Nav() {
       };
 
       window.addEventListener("resize", () => {
-        if (window.innerWidth > 1125) {
+        if (window.innerWidth > 980) {
           deleteStyleHeight();
           if (list.classList.contains("menu__links--show"))
             list.classList.remove("menu__links--show");
@@ -46,7 +47,7 @@ export default function Nav() {
         }
       });
 
-      if (window.innerWidth <= 1125) {
+      if (window.innerWidth <= 980) {
         addClick();
       }
 
@@ -55,6 +56,7 @@ export default function Nav() {
       );
     })();
   }, []);
+  const { temperaments } = useSelector((state) => state);
   return (
     <div className="Navbar">
       <nav className="menu">
@@ -76,21 +78,16 @@ export default function Nav() {
               </a>
 
               <ul className="menu__nesting">
-                <li className="menu__inside">
-                  <a href="#" className="menu__link menu__link--inside">
-                    Independent
-                  </a>
-                </li>
-                <li className="menu__inside">
-                  <a href="#" className="menu__link menu__link--inside">
-                    Faithful
-                  </a>
-                </li>
-                <li className="menu__inside">
-                  <a href="#" className="menu__link menu__link--inside">
-                    Sturdy
-                  </a>
-                </li>
+                {temperaments.length > 0 &&
+                  temperaments.map((temperament) => {
+                    return (
+                      <li className="menu__inside" key={temperament.id}>
+                        <a href="#" className="menu__link menu__link--inside">
+                          {temperament.name}
+                        </a>
+                      </li>
+                    );
+                  })}
               </ul>
             </li>
 
