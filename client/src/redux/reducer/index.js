@@ -3,6 +3,8 @@ import {
   GET_ALL_TEMPERAMENTS,
   GET_BREED_BY_ID,
   CARGAR_TEMEPERAMENTOS,
+  GET_BREEDS_BY_NAME,
+  GET_BREEDS_BY_TEMPERAMENT,
 } from "../actions/types";
 const initialState = {
   breeds: [],
@@ -34,6 +36,16 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         labelSelect: action.payload,
+      };
+    case GET_BREEDS_BY_NAME:
+      return {
+        ...state,
+        breeds: action.payload,
+      };
+    case GET_BREEDS_BY_TEMPERAMENT:
+      return {
+        ...state,
+        breeds: action.payload,
       };
     default:
       return {

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import arrow from "../../assets/arrow.svg";
 import hamburguer from "../../assets/menu.svg";
+import { getBreedByName, getBreedByTemperament } from "../../redux/actions";
 import "./Nav.css";
 
 export default function Nav() {
@@ -56,7 +57,18 @@ export default function Nav() {
       );
     })();
   }, []);
-  const { temperaments } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { temperaments, breedsTable } = useSelector((state) => state);
+  const handleInputChange = (e) => {
+    const { value } = e.target;
+    console.log(value);
+    dispatch(getBreedByName(value));
+  };
+  const handleChangeTemperament = (Temperament) => {
+    dispatch(getBreedByTemperament(breedsTable, Temperament));
+    navigate("/breeds");
+  };
   return (
     <div className="Navbar">
       <nav className="menu">
@@ -67,7 +79,11 @@ export default function Nav() {
 
           <div className="menu_busqueda">
             <p>Nombre</p>
-            <input className="text_buscar_nombre" type="text" />
+            <input
+              className="text_buscar_nombre"
+              type="text"
+              onChange={handleInputChange}
+            />
           </div>
 
           <ul className="menu__links">
@@ -81,7 +97,13 @@ export default function Nav() {
                 {temperaments.length > 0 &&
                   temperaments.map((temperament) => {
                     return (
-                      <li className="menu__inside" key={temperament.id}>
+                      <li
+                        className="menu__inside"
+                        key={temperament.id}
+                        onClick={() => {
+                          handleChangeTemperament(temperament.name);
+                        }}
+                      >
                         <a href="#" className="menu__link menu__link--inside">
                           {temperament.name}
                         </a>
