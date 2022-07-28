@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import arrow from "../../assets/arrow.svg";
 import hamburguer from "../../assets/menu.svg";
-import { getBreedByName, getBreedByTemperament } from "../../redux/actions";
+import {
+  getBreedByName,
+  getBreedByTemperament,
+  orderAlphabetic,
+} from "../../redux/actions";
 import "./Nav.css";
 
 export default function Nav() {
@@ -71,8 +75,8 @@ export default function Nav() {
   };
 
   const handleInputChangeOrder = (column, asc_des) => {
-    orderAlphabetic(asc_des, column, [...breeds]);
-    navigate("/countries");
+    dispatch(orderAlphabetic(asc_des, column, [...breeds]));
+    navigate("/breeds");
   };
   return (
     <div className="Navbar">
@@ -118,12 +122,7 @@ export default function Nav() {
               </ul>
             </li>
 
-            <li
-              className="menu__item  menu__item--show"
-              onClick={() => {
-                handleInputChangeOrder("name", true);
-              }}
-            >
+            <li className="menu__item  menu__item--show">
               <a href="#" className="menu__link">
                 Ordenar
                 <img src={arrow} className="menu__arrow" />
@@ -150,12 +149,22 @@ export default function Nav() {
               </a>
 
               <ul className="menu__nesting">
-                <li className="menu__inside">
+                <li
+                  className="menu__inside"
+                  onClick={() => {
+                    handleInputChangeOrder("name", true);
+                  }}
+                >
                   <a href="#" className="menu__link menu__link--inside">
                     Ascendente
                   </a>
                 </li>
-                <li className="menu__inside">
+                <li
+                  className="menu__inside"
+                  onClick={() => {
+                    handleInputChangeOrder("name", false);
+                  }}
+                >
                   <a href="#" className="menu__link menu__link--inside">
                     Descendente
                   </a>

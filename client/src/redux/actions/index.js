@@ -5,6 +5,7 @@ import {
   CARGAR_TEMEPERAMENTOS,
   GET_BREEDS_BY_NAME,
   GET_BREEDS_BY_TEMPERAMENT,
+  ORDENAMIENTO_ALFABETICO,
 } from "./types";
 
 const api = "http://localhost:3001";
@@ -88,23 +89,24 @@ export const getBreedByTemperament = (Breeds, Temperament) => {
   };
 };
 export const orderAlphabetic = (asc_desc, column, breeds) => {
-  let orderCountries;
+  let orderBreeds;
   if (asc_desc) {
-    orderCountries = breeds.sort((a, b) => {
+    orderBreeds = breeds.sort((a, b) => {
       if (a[column] < b[column]) return -1;
       if (a[column] < b[column]) return 1;
       return 0;
     });
   } else {
-    orderCountries = breeds.sort((a, b) => {
+    orderBreeds = breeds.sort((a, b) => {
       if (a[column] > b[column]) return -1;
       if (a[column] > b[column]) return 1;
       return 0;
     });
   }
+  console.log("ordenando", orderBreeds);
   return {
     type: ORDENAMIENTO_ALFABETICO,
-    payload: orderCountries,
+    payload: orderBreeds,
   };
 };
 export const addBreed = (breed) => {
