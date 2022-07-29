@@ -5,26 +5,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { CardBreed } from "../Cards/CardBreed";
 import "./Breeds.css";
 import { Link } from "react-router-dom";
+import { Paginado } from "../Paginado/Paginado";
 
 const Breeds = () => {
   const dispatch = useDispatch();
+  const { breeds, pagina, lim_paginas } = useSelector((state) => state);
   useEffect(() => {
     dispatch(get_all_breeds());
     dispatch(getAllTemperaments());
   }, []);
-  const { breeds } = useSelector((state) => state);
+  let lim = lim_paginas;
+  let max = pagina * lim;
+  let min = max - lim;
+  if (pagina >= 2) {
+    max = max - 1;
+    min = min;
+  }
+  console.log(breeds, pagina, lim_paginas);
   return (
     <div>
       <Nav />
+      <Paginado />
       <h1>Breeds</h1>
       <div className="cards">
         {breeds.map((breed) => {
           return (
             <div key={breed.id}>
-              <Link to={`/breedDetail/${breed.id}`}>
+              {breeds.indexOf(breed) < max && breeds.indexOf(breed) >= min && (
                 <CardBreed breed={breed} />
-              </Link>
-              {/* {breed.name} */}
+              )}
             </div>
           );
         })}

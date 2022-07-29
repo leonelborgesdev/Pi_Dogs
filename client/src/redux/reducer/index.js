@@ -6,6 +6,7 @@ import {
   GET_BREEDS_BY_NAME,
   GET_BREEDS_BY_TEMPERAMENT,
   ORDENAMIENTO_ALFABETICO,
+  GET_PAGES,
 } from "../actions/types";
 const initialState = {
   breeds: [],
@@ -13,6 +14,8 @@ const initialState = {
   breed: {},
   temperaments: [],
   labelSelect: [],
+  lim_paginas: 8,
+  pagina: 1,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -22,6 +25,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         breeds: action.payload,
         breedsTable: action.payload,
+        pagina: 1,
       };
     case GET_BREED_BY_ID:
       return {
@@ -52,6 +56,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         breeds: action.payload,
+      };
+    case GET_PAGES:
+      return {
+        ...state,
+        pagina: action.payload,
+        lim_paginas: action.limite,
       };
     default:
       return {

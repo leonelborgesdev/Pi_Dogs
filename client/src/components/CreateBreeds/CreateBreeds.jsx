@@ -140,7 +140,9 @@ const CreateBreeds = () => {
             })}
           </div>
         </div>
-        <button onClick={handleCreateBreed}>Create</button>
+        <div className="group_btn">
+          <button onClick={handleCreateBreed}>Create</button>
+        </div>
       </div>
     </div>
   );

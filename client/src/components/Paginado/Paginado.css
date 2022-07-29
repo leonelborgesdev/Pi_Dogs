@@ -1,0 +1,39 @@
+.paginado{
+    background: white;
+    position: sticky;
+    top: 70px;
+}
+.buton_row_pag{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.buton_pag{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(89, 162, 221);
+    margin: 0.5rem;
+    border-radius: 5px;
+    width: 28px;
+    height: 28px;
+}
+.buton_pag :hover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(89, 221, 203);
+    border-radius: 5px;
+    width: 28px;
+    height: 28px;
+}
+.buton_pag_select{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(89, 221, 203);
+    margin: 0.5rem;
+    border-radius: 5px;
+    width: 28px;
+    height: 28px;
+}

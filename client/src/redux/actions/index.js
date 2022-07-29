@@ -6,6 +6,7 @@ import {
   GET_BREEDS_BY_NAME,
   GET_BREEDS_BY_TEMPERAMENT,
   ORDENAMIENTO_ALFABETICO,
+  GET_PAGES,
 } from "./types";
 
 const api = "http://localhost:3001";
@@ -103,10 +104,20 @@ export const orderAlphabetic = (asc_desc, column, breeds) => {
       return 0;
     });
   }
-  console.log("ordenando", orderBreeds);
   return {
     type: ORDENAMIENTO_ALFABETICO,
     payload: orderBreeds,
+  };
+};
+export const getPages = (page, lim_paginas) => {
+  return function (dispatch) {
+    if (page) {
+      dispatch({
+        type: GET_PAGES,
+        payload: page,
+        limite: lim_paginas,
+      });
+    }
   };
 };
 export const addBreed = (breed) => {
