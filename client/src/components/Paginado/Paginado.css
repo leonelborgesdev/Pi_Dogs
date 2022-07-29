@@ -1,14 +1,18 @@
 .paginado{
     background: white;
     position: sticky;
-    top: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0px;
+    animation: moverArriba 1s ease-in;
 }
 .buton_row_pag{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    height: 40px;
+    height: 50px;
     gap: 0.5rem;
 }
 .buton_pag{

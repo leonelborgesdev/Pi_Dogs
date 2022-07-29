@@ -7,6 +7,6 @@
 .pet_breeds{
   display: flex;
   justify-content: flex-start;
-  bottom: 5px;
+  bottom: 50px;
   position: sticky;
 }

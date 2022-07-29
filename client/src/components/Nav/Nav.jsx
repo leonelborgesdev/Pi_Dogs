@@ -43,7 +43,7 @@ export default function Nav() {
       };
 
       window.addEventListener("resize", () => {
-        if (window.innerWidth > 980) {
+        if (window.innerWidth > 1060) {
           deleteStyleHeight();
           if (list.classList.contains("menu__links--show"))
             list.classList.remove("menu__links--show");
@@ -52,7 +52,7 @@ export default function Nav() {
         }
       });
 
-      if (window.innerWidth <= 980) {
+      if (window.innerWidth <= 1060) {
         addClick();
       }
 
@@ -88,8 +88,11 @@ export default function Nav() {
     <div className="Navbar">
       <nav className="menu">
         <section className="menu__container">
+          <Link className="buton__container" to={"/"}>
+            Landing
+          </Link>
           <Link className="buton__container" to={"/breeds"}>
-            Home
+            Breeds
           </Link>
 
           <div className="menu_busqueda">
