@@ -25,6 +25,7 @@ const Breeds = () => {
   return (
     <div>
       <Nav />
+      <Paginado />
       <h1>Breeds</h1>
       <div className="cards">
         {breeds.map((breed) => {
@@ -40,7 +41,6 @@ const Breeds = () => {
       <div className="pet_breeds">
         <img src={pet} />
       </div>
-      <Paginado />
     </div>
   );
 };

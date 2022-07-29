@@ -15,6 +15,7 @@
 .Navbar{
     font-family: 'Poppins', sans-serif;
     position: sticky;
+    animation: moverAbajo 1s ease-in;
     top: 0px;
 }
 

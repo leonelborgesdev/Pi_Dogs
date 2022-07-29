@@ -1,11 +1,11 @@
 .paginado{
     background: white;
     position: sticky;
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: center;
-    bottom: 0px;
-    animation: moverArriba 1s ease-in;
+    justify-content: center; */
+    top: 70px;
+    animation: moverAbajo 1s ease-in;
 }
 .buton_row_pag{
     display: flex;

@@ -19,6 +19,8 @@
     display: block;
     height: 450px;
     object-fit: cover;
+    border-radius: 400px;
+    background: rgb(80, 145, 230);
     width: auto;
     animation: moverAbajo 1s ease-in;
 }
@@ -27,11 +29,11 @@
     color: white;
 }
 .textos h1{
-    font-size: 70px;
+    font-size: 80px;
     animation: moverDerecha 1s ease-in;
 }
 .textos h2{
-    font-size: 23px;
+    font-size: 25px;
     animation: moverIzquierda 1s ease-in;
 }
 .textos a{
@@ -98,5 +100,75 @@
     100%{
         opacity: 1;
         transform: translate(0);
+    }
+}
+
+@media screen and (max-width:1100px) {
+    .img_landing{
+        height: 400px;
+    }
+    .textos h1{
+        font-size: 70px;
+    }
+}
+@media screen and (max-width:900px) {
+    .img_landing{
+        height: 300px;
+    }
+    .textos h1{
+        font-size: 60px;
+    }
+    .textos h2{
+        font-size: 20px;
+    }
+}
+@media screen and (max-width:800px) {
+    .img_landing{
+        height: 280px;
+    }
+    .textos h1{
+        font-size: 55px;
+    }
+    .textos h2{
+        font-size: 15px;
+    }
+}
+@media screen and (max-width:700px) {
+    .textos h1{
+        font-size: 45px;
+    }
+}
+@media screen and (max-width:600px) {
+    .container_landing{
+        width: 100%;
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+    }
+    .img_landing{
+        height: 300px;
+    }
+    .textos{
+        width: 95%;
+        text-align: center;
+    }
+    .textos h1{
+        font-size: 55px;
+    }
+    .textos h2{
+        font-size: 20px;
+    }
+}
+@media screen and (max-width:440px) {
+    .img_landing{
+        height: 160px;
+    }
+    .textos h1{
+        font-size: 35px;
+    }
+    .textos h2{
+        font-size: 15px;
+    }
+    .textos a{
+        font-size: 12px;
     }
 }
