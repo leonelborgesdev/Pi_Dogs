@@ -4,7 +4,7 @@ import { getAllTemperaments, get_all_breeds } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { CardBreed } from "../Cards/CardBreed";
 import "./Breeds.css";
-import { Link } from "react-router-dom";
+import pet from "../../assets/pet.gif";
 import { Paginado } from "../Paginado/Paginado";
 
 const Breeds = () => {
@@ -37,6 +37,9 @@ const Breeds = () => {
             </div>
           );
         })}
+      </div>
+      <div className="pet_breeds">
+        <img src={pet} />
       </div>
     </div>
   );

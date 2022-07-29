@@ -4,3 +4,9 @@
     justify-content: center;
     gap: 1.5rem;
   }
+.pet_breeds{
+  display: flex;
+  justify-content: flex-start;
+  bottom: 5px;
+  position: sticky;
+}
