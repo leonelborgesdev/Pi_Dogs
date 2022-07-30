@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    animation: moverDerecha 1s ease-in;
     /* gap: 1.5rem; */
   }
 .pet_breeds{

@@ -17,7 +17,6 @@ export const get_all_breeds = () => {
     const response = await fetch(`${api}/breeds`);
     if (response) {
       const date = await response.json();
-      console.log(date);
       dispatch({
         type: GET_ALL_BREEDS,
         payload: date,

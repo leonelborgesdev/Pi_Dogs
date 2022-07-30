@@ -21,7 +21,6 @@ const Breeds = () => {
     max = max;
     min = min;
   }
-  console.log(breeds, pagina, lim_paginas);
   return (
     <div>
       <Nav />

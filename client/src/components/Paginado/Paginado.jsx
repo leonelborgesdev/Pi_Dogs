@@ -25,7 +25,6 @@ export const Paginado = () => {
   }
   const handleClick = (e) => {
     const { id } = e.target;
-    console.log(id);
     dispatch(getPages(parseInt(id), lim_paginas));
   };
   const handleChancgePage = (e) => {
@@ -69,7 +68,6 @@ export const Paginado = () => {
         ) : (
           <span></span>
         )}
-        {console.log(paginas)}
         {adelante < paginas && (
           <div className="buton_pag">
             <label id={"adelante"} onClick={handleChancgePage}>

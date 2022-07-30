@@ -6,7 +6,7 @@
     justify-content: center;
     /* top: 70px; */
     bottom: 0px;
-    animation: moverAbajo 1s ease-in;
+    animation: moverArriba 1s ease-in;
 }
 .buton_row_pag{
     display: flex;

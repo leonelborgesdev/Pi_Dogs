@@ -12,7 +12,6 @@ export const BreedDetail = () => {
     dispatch(getBreedById(idBreed));
   }, []);
   const { breed } = useSelector((state) => state);
-  console.log(breed);
   return (
     <div>
       <Nav />
