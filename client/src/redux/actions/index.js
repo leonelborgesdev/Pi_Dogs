@@ -8,6 +8,7 @@ import {
   ORDENAMIENTO_ALFABETICO,
   GET_PAGES,
   CHANGE_PAGE,
+  GET_TEMPERAMENTS_BY_NAME,
 } from "./types";
 
 const api = "http://localhost:3001";
@@ -51,6 +52,18 @@ export const getAllTemperaments = () => {
   };
 };
 
+export const getTemperamentsByName = (name) => {
+  return async function (dispatch) {
+    const response = await fetch(`${api}/temperaments?name=${name}`);
+    if (response) {
+      const date = await response.json();
+      dispatch({
+        type: GET_TEMPERAMENTS_BY_NAME,
+        payload: date,
+      });
+    }
+  };
+};
 export const cargar_temperamentos = (temperamentos) => {
   return function (dispatch) {
     dispatch({

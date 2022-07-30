@@ -4,6 +4,7 @@ import {
   getAllTemperaments,
   cargar_temperamentos,
   addBreed,
+  getTemperamentsByName,
 } from "../../redux/actions";
 import { v4 } from "uuid";
 import Nav from "../Nav/Nav";
@@ -17,7 +18,7 @@ const CreateBreeds = () => {
     dispatch(getAllTemperaments());
   }, []);
   //   const { temperaments, labelSelect } = useSelector((state) => state);
-  const { temperaments } = useSelector((state) => state);
+  const { temperaments_search } = useSelector((state) => state);
   const [breed, setBreed] = useState({
     id: v4(),
     name: "",
@@ -57,6 +58,11 @@ const CreateBreeds = () => {
       ...breed,
       [name]: value,
     });
+  };
+  const handleInputChangeSearch = (e) => {
+    const { value } = e.target;
+    console.log(value);
+    dispatch(getTemperamentsByName(value));
   };
   const handleCreateBreed = () => {
     console.log(breed);
@@ -107,37 +113,60 @@ const CreateBreeds = () => {
                 onChange={handleInputChange}
               />
             </div>
+            <div className="create_item">
+              <h3>Imagen:</h3>
+              <input
+                type={"text"}
+                placeholder="Url image..."
+                name="image"
+                onChange={handleInputChange}
+              />
+            </div>
           </div>
-          <div className="table_temperaments">
-            {temperaments.map((temperament) => {
-              return (
-                <React.Fragment key={temperament.id}>
-                  {breed.temperaments.map((select) => {
-                    return (
-                      <React.Fragment key={select}>
-                        {select === temperament.id && (
-                          <div className="label_table_sel" key={temperament.id}>
-                            <label
-                              id={temperament.id}
-                              onClick={handleTemperamentDeseleccionar}
+          <div className="panel_temperaments">
+            <div className="create_item">
+              <h3>Nombre:</h3>
+              <input
+                type={"text"}
+                placeholder="Temperament..."
+                name="name"
+                onChange={handleInputChangeSearch}
+              />
+            </div>
+            <div className="table_temperaments">
+              {temperaments_search.map((temperament) => {
+                return (
+                  <React.Fragment key={temperament.id}>
+                    {breed.temperaments.map((select) => {
+                      return (
+                        <React.Fragment key={select}>
+                          {select === temperament.id && (
+                            <div
+                              className="label_table_sel"
+                              key={temperament.id}
                             >
-                              {temperament.name}
-                            </label>
-                          </div>
-                        )}
-                      </React.Fragment>
-                    );
-                  })}
-                  {handleVerificar(temperament.id) === false && (
-                    <div className="label_table" key={temperament.id}>
-                      <label id={temperament.id} onClick={handleTemperament}>
-                        {temperament.name}
-                      </label>
-                    </div>
-                  )}
-                </React.Fragment>
-              );
-            })}
+                              <label
+                                id={temperament.id}
+                                onClick={handleTemperamentDeseleccionar}
+                              >
+                                {temperament.name}
+                              </label>
+                            </div>
+                          )}
+                        </React.Fragment>
+                      );
+                    })}
+                    {handleVerificar(temperament.id) === false && (
+                      <div className="label_table" key={temperament.id}>
+                        <label id={temperament.id} onClick={handleTemperament}>
+                          {temperament.name}
+                        </label>
+                      </div>
+                    )}
+                  </React.Fragment>
+                );
+              })}
+            </div>
           </div>
         </div>
         <div className="group_btn">

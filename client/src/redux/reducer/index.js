@@ -8,12 +8,14 @@ import {
   ORDENAMIENTO_ALFABETICO,
   GET_PAGES,
   CHANGE_PAGE,
+  GET_TEMPERAMENTS_BY_NAME,
 } from "../actions/types";
 const initialState = {
   breeds: [],
   breedsTable: [],
   breed: {},
   temperaments: [],
+  temperaments_search: [],
   labelSelect: [],
   lim_paginas: 8,
   pagina: 1,
@@ -39,6 +41,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         temperaments: action.payload,
+        temperaments_search: action.payload,
+      };
+    case GET_TEMPERAMENTS_BY_NAME:
+      return {
+        ...state,
+        temperaments_search: action.payload,
       };
     case CARGAR_TEMEPERAMENTOS:
       return {

@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 400px;
+    width: 50%;
     margin: 10px;
     gap: 2rem
 }
@@ -29,14 +29,31 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 94%;
+    gap: 1rem;
+    margin: 10px;
+}
+.panel_temperaments{
+    width: 50%;
 }
 .table_temperaments{
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     height: 230px;
-    width: 400px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid cyan;
     overflow: auto;
+}
+.search_temperaments{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
 }
 .table_temperaments::-webkit-scrollbar:vertical {
     width:10px;
@@ -69,3 +86,20 @@
     border-radius: 15px;
 }
 
+
+@media screen and (max-width:850px) {
+    .form_create{
+        width: 100%;
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+    }
+    .container_create{
+        width: 90%;
+    }
+    .panel_temperaments{
+        width: 90%;
+    }
+    .table_temperaments{
+        width: 100%;
+    }
+}

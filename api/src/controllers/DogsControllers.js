@@ -56,8 +56,8 @@ async function getDogById(req, res) {
   }
 }
 async function addBreed(req, res) {
-  const { id, name, height, weight, life_span, temperaments } = req.body;
-  let breed = { id, name, height, weight, life_span, image: "" };
+  const { id, name, height, weight, life_span, image, temperaments } = req.body;
+  let breed = { id, name, height, weight, life_span, image };
   if (breed.name) {
     const breed1 = await Dog.create(breed);
     await breed1.setTemperaments(temperaments);
