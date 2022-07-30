@@ -23,7 +23,7 @@ export const BreedDetail = () => {
             <h3>Name: {breed.name}</h3>
             <h3>Height: {breed.height}</h3>
             <h3>Weight: {breed.weight}</h3>
-            <h3>Life Span:{breed.life_span}</h3>
+            <h3>Life Span: {breed.life_span}</h3>
             <h3>
               Temperaments:
               {breed.temperaments?.map((temperament) => {

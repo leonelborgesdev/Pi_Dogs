@@ -11,17 +11,17 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100%;
-    background: #2193b0;
-    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
-    background: linear-gradient(to right, #6dd5ed, #2193b0); 
+    width: 100%;background: #11998e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
 }
 .img_landing{
     display: block;
     height: 450px;
     object-fit: cover;
     border-radius: 400px;
-    background: rgb(80, 145, 230);
+    background: #019267;
     width: auto;
     animation: moverAbajo 1s ease-in;
 }
@@ -57,9 +57,10 @@
 .wave{
     height: 100%;
     width: 100%;
-    background: #2193b0;
-    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
-    background: linear-gradient(to right, #6dd5ed, #2193b0); 
+    background: #11998e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
 
 }
 .cardImg{

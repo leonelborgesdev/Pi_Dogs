@@ -73,6 +73,7 @@ const CreateBreeds = () => {
   return (
     <div>
       <Nav />
+      {/* <div className="container_create"> */}
       <div className="create_breeds">
         <h1>Create Breeds</h1>
         <div className="form_create">
@@ -173,6 +174,7 @@ const CreateBreeds = () => {
           <button onClick={handleCreateBreed}>Create</button>
         </div>
       </div>
+      {/* </div> */}
     </div>
   );
 };

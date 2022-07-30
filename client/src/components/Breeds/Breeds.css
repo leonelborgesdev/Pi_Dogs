@@ -3,6 +3,8 @@
     flex-wrap: wrap;
     justify-content: center;
     animation: moverDerecha 1s ease-in;
+    background-color: #07a74f;
+    height: 100%;
     /* gap: 1.5rem; */
   }
 .pet_breeds{
@@ -10,4 +12,11 @@
   justify-content: flex-start;
   bottom: 50px;
   position: sticky;
+  /* background-color: #07a74f; */
+}
+.containerBreed{
+  background-color: #07a74f;
+}
+.h1_razas{  
+  background-color: #07a74f;
 }

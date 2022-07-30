@@ -22,9 +22,9 @@ const Breeds = () => {
     min = min;
   }
   return (
-    <div>
+    <div className="containerBreed">
       <Nav />
-      <h1>Breeds</h1>
+      <h1 className="h1_razas">Breeds</h1>
       <div className="cards">
         {breeds.map((breed) => {
           return (
@@ -36,9 +36,7 @@ const Breeds = () => {
           );
         })}
       </div>
-      <div className="pet_breeds">
-        <img src={pet} />
-      </div>
+      <img className="pet_breeds" src={pet} />
       <Paginado />
     </div>
   );

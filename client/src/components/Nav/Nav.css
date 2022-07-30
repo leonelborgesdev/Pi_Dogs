@@ -19,7 +19,7 @@
 }
 
 .menu{
-    background: rgb(76, 136, 185);
+    background: #036931;
     color: #fff;
     height: 70px;
 }
@@ -63,7 +63,7 @@
 }
 
 .menu__link:hover{
-    background-color: #5e7094;
+    background-color: #019267;
 }
 
 
@@ -83,7 +83,7 @@
     bottom: 0;
     width: max-content;
     transform: translateY(100%);
-    background: rgb(76, 136, 185);
+    background: #036931;
     height: 140px;
     /* position: sticky; */
     overflow: auto;
@@ -94,7 +94,7 @@
 }
 
 .menu__link--inside:hover{
-    background-color: #798499;
+    background-color: #019267;
 }
 .buton__container{
     color: white;
@@ -127,7 +127,7 @@
 
     .menu__item--active{
         --transform: rotate(0);
-        --background: #5e7094;
+        --background: #019267;
     }
 
     .menu__item--show{
@@ -142,7 +142,7 @@
         top: 70px;
         bottom: 0;
         right: 0;
-        background: rgb(76, 136, 185);
+        background: #036931;
         overflow-y: auto;
         display: grid;
         grid-auto-rows: max-content;

@@ -1,8 +1,14 @@
+
+
 .create_breeds{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 25px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    margin: 10px;
 }
 
 .container_create{

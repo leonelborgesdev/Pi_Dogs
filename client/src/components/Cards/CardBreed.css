@@ -24,12 +24,12 @@
     height: 40px;
     width: 120px;
     border-radius: 10px;
-    border: 1px solid #8280ff;
+    border: 1px solid #019267;
     padding: 8px 16px;
-    background: #8280ff;
+    background: #019267;
     font-size: 18px;
     color: whitesmoke;
   }
   .group_btn > button:hover {
-    background: #4a498f;
+    background: #036931;
   }
