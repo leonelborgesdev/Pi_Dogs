@@ -4,7 +4,6 @@ import PerritoPng from "../../assets/PerritoPng1.png";
 import "./LandingPage.css";
 
 export const LandingPage = () => {
-  const navigate = useNavigate();
   return (
     <div className="landing">
       <div className="container_landing">

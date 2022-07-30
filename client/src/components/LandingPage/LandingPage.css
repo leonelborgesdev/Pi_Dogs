@@ -49,6 +49,10 @@
     padding: 10px 0;
     animation: moverArriba 1s ease-in;
 }
+.textos a :hover{
+    background-color: #fff;
+    color: #2193b0;
+}
 .wave{
     height: 100%;
     width: 100%;
