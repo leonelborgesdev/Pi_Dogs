@@ -6,6 +6,7 @@ import hamburguer from "../../assets/menu.svg";
 import {
   getBreedByName,
   getBreedByTemperament,
+  get_all_breeds,
   orderAlphabetic,
 } from "../../redux/actions";
 import "./Nav.css";
@@ -91,7 +92,13 @@ export default function Nav() {
           <Link className="buton__container" to={"/"}>
             Landing
           </Link>
-          <Link className="buton__container" to={"/breeds"}>
+          <Link
+            className="buton__container"
+            to={"/breeds"}
+            onClick={() => {
+              dispatch(get_all_breeds());
+            }}
+          >
             Breeds
           </Link>
 
