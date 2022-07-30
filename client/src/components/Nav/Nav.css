@@ -19,7 +19,7 @@
 }
 
 .menu{
-    background-color: #1A202C;
+    background: rgb(76, 136, 185);
     color: #fff;
     height: 70px;
 }
@@ -83,7 +83,7 @@
     bottom: 0;
     width: max-content;
     transform: translateY(100%);
-    background-color: #000;
+    background: rgb(76, 136, 185);
     height: 140px;
     /* position: sticky; */
     overflow: auto;
@@ -142,7 +142,7 @@
         top: 70px;
         bottom: 0;
         right: 0;
-        background-color: #000;
+        background: rgb(76, 136, 185);
         overflow-y: auto;
         display: grid;
         grid-auto-rows: max-content;

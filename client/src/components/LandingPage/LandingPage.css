@@ -1,5 +1,6 @@
 .container_landing{
     width: 95%;
+    height: 600px;
     max-width: 1200px;
     display: flex;
     align-items: center;
@@ -163,6 +164,9 @@
     }
 }
 @media screen and (max-width:440px) {
+    .container_landing{
+    height: auto;
+    }
     .img_landing{
         height: 160px;
     }
