@@ -7,6 +7,7 @@ import {
   GET_BREEDS_BY_TEMPERAMENT,
   ORDENAMIENTO_ALFABETICO,
   GET_PAGES,
+  CHANGE_PAGE,
 } from "./types";
 
 const api = "http://localhost:3001";
@@ -116,6 +117,23 @@ export const getPages = (page, lim_paginas) => {
         type: GET_PAGES,
         payload: page,
         limite: lim_paginas,
+      });
+    }
+  };
+};
+export const changePage = (Page, adelante, atras) => {
+  return function (dispatch) {
+    if (Page === "adelante") {
+      dispatch({
+        type: CHANGE_PAGE,
+        payload: adelante + 1,
+        payload2: atras + 1,
+      });
+    } else {
+      dispatch({
+        type: CHANGE_PAGE,
+        payload: adelante - 1,
+        payload2: atras - 1,
       });
     }
   };

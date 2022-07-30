@@ -7,6 +7,7 @@ import {
   GET_BREEDS_BY_TEMPERAMENT,
   ORDENAMIENTO_ALFABETICO,
   GET_PAGES,
+  CHANGE_PAGE,
 } from "../actions/types";
 const initialState = {
   breeds: [],
@@ -16,6 +17,8 @@ const initialState = {
   labelSelect: [],
   lim_paginas: 8,
   pagina: 1,
+  atras: 0,
+  adelante: 5,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -51,6 +54,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         breeds: action.payload,
+        pagina: 1,
       };
     case ORDENAMIENTO_ALFABETICO:
       return {
@@ -62,6 +66,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         pagina: action.payload,
         lim_paginas: action.limite,
+      };
+    case CHANGE_PAGE:
+      return {
+        ...state,
+        adelante: action.payload,
+        atras: action.payload2,
       };
     default:
       return {

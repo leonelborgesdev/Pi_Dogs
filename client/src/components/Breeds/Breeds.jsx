@@ -18,14 +18,13 @@ const Breeds = () => {
   let max = pagina * lim;
   let min = max - lim;
   if (pagina >= 2) {
-    max = max - 1;
+    max = max;
     min = min;
   }
   console.log(breeds, pagina, lim_paginas);
   return (
     <div>
       <Nav />
-      <Paginado />
       <h1>Breeds</h1>
       <div className="cards">
         {breeds.map((breed) => {
@@ -41,6 +40,7 @@ const Breeds = () => {
       <div className="pet_breeds">
         <img src={pet} />
       </div>
+      <Paginado />
     </div>
   );
 };
