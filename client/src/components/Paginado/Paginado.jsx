@@ -27,19 +27,37 @@ export const Paginado = () => {
     const { id } = e.target;
     dispatch(getPages(parseInt(id), lim_paginas));
   };
-  const handleChancgePage = (e) => {
+  const handleChangePage = (e) => {
     const { id } = e.target;
     dispatch(changePage(id, adelante, atras));
+  };
+  const handleChangePageUlt = (e) => {
+    const { id } = e.target;
+    dispatch(changePage("adelante", paginas - 1, paginas - 4));
+    dispatch(getPages(parseInt(id), lim_paginas));
+  };
+  const handleChangePageFirst = (e) => {
+    const { id } = e.target;
+    dispatch(changePage("atras", 4, id));
+    dispatch(getPages(parseInt(id), lim_paginas));
   };
   return (
     <div className="paginado">
       <div className="buton_row_pag">
         {atras > 0 && (
-          <div className="buton_pag">
-            <label id={"atras"} onClick={handleChancgePage}>
-              {"<"}
-            </label>
-          </div>
+          <>
+            <div className="buton_pag">
+              <label id={"atras"} onClick={handleChangePage}>
+                {"<"}
+              </label>
+            </div>
+            <div className="buton_pag">
+              <label id={1} onClick={handleChangePageFirst}>
+                {1}
+              </label>
+            </div>
+            ..
+          </>
         )}
         {breeds.length > 0 ? (
           array.map((num) => {
@@ -69,11 +87,19 @@ export const Paginado = () => {
           <span></span>
         )}
         {adelante < paginas && (
-          <div className="buton_pag">
-            <label id={"adelante"} onClick={handleChancgePage}>
-              {">"}
-            </label>
-          </div>
+          <>
+            ..
+            <div className="buton_pag">
+              <label id={paginas} onClick={handleChangePageUlt}>
+                {paginas}
+              </label>
+            </div>
+            <div className="buton_pag">
+              <label id={"adelante"} onClick={handleChangePage}>
+                {">"}
+              </label>
+            </div>
+          </>
         )}
       </div>
     </div>

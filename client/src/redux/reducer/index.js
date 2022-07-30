@@ -18,7 +18,7 @@ const initialState = {
   lim_paginas: 8,
   pagina: 1,
   atras: 0,
-  adelante: 5,
+  adelante: 3,
 };
 
 const rootReducer = (state = initialState, action) => {

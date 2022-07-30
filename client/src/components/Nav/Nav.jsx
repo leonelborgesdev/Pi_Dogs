@@ -68,7 +68,6 @@ export default function Nav() {
   const { temperaments, breedsTable, breeds } = useSelector((state) => state);
   const handleInputChange = (e) => {
     const { value } = e.target;
-    console.log(value);
     dispatch(getBreedByName(value));
   };
   const handleChangeTemperament = (Temperament) => {
@@ -81,7 +80,6 @@ export default function Nav() {
       ...ordenar,
       ["name"]: column,
     });
-    console.log(asc_des, column);
     dispatch(orderAlphabetic(asc_des, column, [...breeds]));
     navigate("/breeds");
   };
@@ -89,19 +87,20 @@ export default function Nav() {
     <div className="Navbar">
       <nav className="menu">
         <section className="menu__container">
-          <Link className="buton__container" to={"/"}>
-            Landing
-          </Link>
-          <Link
-            className="buton__container"
-            to={"/breeds"}
-            onClick={() => {
-              dispatch(get_all_breeds());
-            }}
-          >
-            Breeds
-          </Link>
-
+          <div className="menu_busqueda">
+            <Link className="buton__container" to={"/"}>
+              Landing
+            </Link>
+            <Link
+              className="buton__container"
+              to={"/breeds"}
+              onClick={() => {
+                dispatch(get_all_breeds());
+              }}
+            >
+              Breeds
+            </Link>
+          </div>
           <div className="menu_busqueda">
             <p>Nombre</p>
             <input
