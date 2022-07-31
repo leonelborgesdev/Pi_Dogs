@@ -78,7 +78,7 @@ const CreateBreeds = () => {
         <div className="form_create">
           <div className="container_create">
             <div className="create_item">
-              <h3>Nombre:</h3>
+              <h3 className="textCreate">Nombre:</h3>
               <input
                 type={"text"}
                 placeholder="Name..."
@@ -87,7 +87,7 @@ const CreateBreeds = () => {
               />
             </div>
             <div className="create_item">
-              <h3>Altura:</h3>
+              <h3 className="textCreate">Altura:</h3>
               <input
                 type={"text"}
                 placeholder="64 - 69"
@@ -96,7 +96,7 @@ const CreateBreeds = () => {
               />
             </div>
             <div className="create_item">
-              <h3>Peso:</h3>
+              <h3 className="textCreate">Peso:</h3>
               <input
                 type={"text"}
                 placeholder="23 - 27"
@@ -105,7 +105,7 @@ const CreateBreeds = () => {
               />
             </div>
             <div className="create_item">
-              <h3>Años:</h3>
+              <h3 className="textCreate">Años:</h3>
               <input
                 type={"text"}
                 placeholder="10 - 13"
@@ -114,7 +114,7 @@ const CreateBreeds = () => {
               />
             </div>
             <div className="create_item">
-              <h3>Imagen:</h3>
+              <h3 className="textCreate">Imagen:</h3>
               <input
                 type={"text"}
                 placeholder="Url image..."
@@ -125,7 +125,7 @@ const CreateBreeds = () => {
           </div>
           <div className="panel_temperaments">
             <div className="create_item">
-              <h3>Nombre:</h3>
+              <h3 className="textCreate">Nombre:</h3>
               <input
                 type={"text"}
                 placeholder="Temperament..."
@@ -173,6 +173,7 @@ const CreateBreeds = () => {
           <button onClick={handleCreateBreed}>Create</button>
         </div>
       </div>
+      <div className="relleno"></div>
     </div>
   );
 };

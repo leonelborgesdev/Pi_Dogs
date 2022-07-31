@@ -20,7 +20,7 @@ export const LandingPage = () => {
         </div>
       </div>
       <div className="wave">
-        <div style={{ height: "150px", overflow: "hidden" }}>
+        <div style={{ height: "100%", overflow: "hidden" }}>
           <svg
             viewBox="0 0 500 100"
             preserveAspectRatio="none"

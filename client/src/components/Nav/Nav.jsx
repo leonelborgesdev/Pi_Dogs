@@ -101,8 +101,8 @@ export default function Nav() {
               Breeds
             </Link>
           </div>
-          <div className="menu_busqueda">
-            <p>Nombre</p>
+          <div className="menu_seccion_busqueda">
+            <p className="buton__container">Nombre</p>
             <input
               className="text_buscar_nombre"
               type="text"
