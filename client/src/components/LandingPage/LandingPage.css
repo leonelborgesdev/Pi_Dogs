@@ -8,9 +8,8 @@
     justify-content: space-around;
 }
 .landing{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    /* display: flex;
+    flex-direction: column; */
     background: #2193b0;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -37,7 +36,7 @@
     font-size: 25px;
     animation: moverIzquierda 1s ease-in;
 }
-.textos a{
+.textos_buton{
     display: inline-block;
     color: #fff;
     font-weight: 300;
@@ -50,13 +49,15 @@
     padding: 10px 0;
     animation: moverArriba 1s ease-in;
 }
-.textos a :hover{
+.landing .container_landing .textos .textos_buton :hover{
     background-color: #fff;
     color: #2193b0;
 }
 .wave{
     height: 100%;
     width: 100%;
+    position: sticky;
+    bottom: 0px;
     background: #2193b0;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #6dd5ed, #2193b0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
@@ -175,7 +176,7 @@
     .textos h2{
         font-size: 15px;
     }
-    .textos a{
+    .textos_buton{
         font-size: 12px;
     }
 }

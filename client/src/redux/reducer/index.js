@@ -31,6 +31,8 @@ const rootReducer = (state = initialState, action) => {
         breeds: action.payload,
         breedsTable: action.payload,
         pagina: 1,
+        atras: 0,
+        adelante: 3,
       };
     case GET_BREED_BY_ID:
       return {

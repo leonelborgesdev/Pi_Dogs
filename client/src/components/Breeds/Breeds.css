@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     justify-content: center;
     animation: moverDerecha 1s ease-in;
-    background-color: #2193b0;
+    /* background-color: #2193b0; */
     height: 100%;
     /* gap: 1.5rem; */
   }

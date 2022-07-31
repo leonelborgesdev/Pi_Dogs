@@ -26,7 +26,14 @@ const CreateBreeds = () => {
     height: "",
     weight: "",
     life_span: "",
+    image: "",
     temperaments: [],
+  });
+  const [height, setHeigth] = useState({ height1: "", height2: "" });
+  const [weight, setWeigth] = useState({ weight1: "", weight2: "" });
+  const [life_span, setLife_span] = useState({
+    life_span1: "",
+    life_span2: "",
   });
   const handleTemperament = (e) => {
     const { id } = e.target;
@@ -60,25 +67,67 @@ const CreateBreeds = () => {
       [name]: value,
     });
   };
+  const handleInputChangeheigth = (e) => {
+    const { name, value } = e.target;
+    setHeigth({
+      ...height,
+      [name]: value,
+    });
+  };
+  const handleInputChangeweigth = (e) => {
+    const { name, value } = e.target;
+    setWeigth({
+      ...weight,
+      [name]: value,
+    });
+  };
+  const handleInputChangelifespan = (e) => {
+    const { name, value } = e.target;
+    setLife_span({
+      ...life_span,
+      [name]: value,
+    });
+  };
   const handleInputChangeSearch = (e) => {
     const { value } = e.target;
-    console.log(value);
     dispatch(getTemperamentsByName(value));
   };
+  function cargar_datos(name, value) {
+    if (name === "heigth") {
+      breed.height = value;
+    }
+    if (name === "weight") {
+      breed.weight = value;
+    }
+    if (name === "life_span") {
+      breed.life_span = value;
+    }
+  }
   const handleCreateBreed = () => {
-    // name: "",
-    // height: "",
-    // weight: "",
-    // life_span: "",
-    // temperaments: [],
+    cargar_datos("heigth", height.height1 + "-" + height.height2);
+    cargar_datos("weight", weight.weight1 + "-" + weight.weight2);
+    cargar_datos(
+      "life_span",
+      life_span.life_span1 + "-" + life_span.life_span2
+    );
     if (breed.temperaments.length > 0) {
       if (breed.name.length > 0) {
-        if (breed.height.length > 0) {
-          if (breed.weight.length > 0) {
-            if (breed.life_span.length > 0) {
+        if (height.height1.length > 0 && height.height2.length > 0) {
+          if (weight.weight1.length > 0 && weight.weight2.length > 0) {
+            if (
+              life_span.life_span1.length > 0 &&
+              life_span.life_span2.length > 0
+            ) {
+              // if (breed.image.length > 0 && breed.image.length > 0) {
               dispatch(addBreed(breed));
               dispatch(cargar_temperamentos([]));
               navigate("/breeds");
+              // } else {
+              //   setLabelError({
+              //     ...labelError,
+              //     label: "Introduzca la url de la imagen",
+              //   });
+              // }
             } else {
               setLabelError({
                 ...labelError,
@@ -88,19 +137,19 @@ const CreateBreeds = () => {
           } else {
             setLabelError({
               ...labelError,
-              label: "Introduzca el peso de la raz",
+              label: "Introduzca el peso de la raza",
             });
           }
         } else {
           setLabelError({
             ...labelError,
-            label: "Introduzca el tamaño de la raz",
+            label: "Introduzca el tamaño de la raza",
           });
         }
       } else {
         setLabelError({
           ...labelError,
-          label: "Introduzca el nombre",
+          label: "Introduzca el nombre de la raza",
         });
       }
     } else {
@@ -130,27 +179,48 @@ const CreateBreeds = () => {
               <h3 className="textCreate">Altura:</h3>
               <input
                 type={"text"}
-                placeholder="64 - 69"
-                name="height"
-                onChange={handleInputChange}
+                placeholder="64"
+                name="height1"
+                onChange={handleInputChangeheigth}
+              />
+              <h3 className="textCreate">-</h3>
+              <input
+                type={"text"}
+                placeholder="69"
+                name="height2"
+                onChange={handleInputChangeheigth}
               />
             </div>
             <div className="create_item">
               <h3 className="textCreate">Peso:</h3>
               <input
                 type={"text"}
-                placeholder="23 - 27"
-                name="weight"
-                onChange={handleInputChange}
+                placeholder="23"
+                name="weight1"
+                onChange={handleInputChangeweigth}
+              />
+              <h3 className="textCreate">-</h3>
+              <input
+                type={"text"}
+                placeholder="27"
+                name="weight2"
+                onChange={handleInputChangeweigth}
               />
             </div>
             <div className="create_item">
               <h3 className="textCreate">Años:</h3>
               <input
                 type={"text"}
-                placeholder="10 - 13"
-                name="life_span"
-                onChange={handleInputChange}
+                placeholder="10"
+                name="life_span1"
+                onChange={handleInputChangelifespan}
+              />
+              <h3 className="textCreate">-</h3>
+              <input
+                type={"text"}
+                placeholder="13"
+                name="life_span2"
+                onChange={handleInputChangelifespan}
               />
             </div>
             <div className="create_item">
