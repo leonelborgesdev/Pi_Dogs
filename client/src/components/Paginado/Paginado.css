@@ -1,5 +1,5 @@
 .paginado{
-    background: #07a74f;
+    background: #2193b0;
     position: sticky;
     display: flex;
     align-items: center;
@@ -20,11 +20,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #036931;
+    background: #2193b0;
+    color: #fff;
+    border: 1px solid #fff;
     /* margin: 0.5rem; */
     border-radius: 5px;
-    width: 28px;
-    height: 28px;
+    width: 33px;
+    height: 33px;
 }
 .buton_pag > label{
     width: 100%;
@@ -33,18 +35,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #17e775;
+    background: #fff;
+    color: #2193b0;
     border-radius: 5px;
     width: 100%;
-    height: 28px;
+    height: 33px;
 }
 .buton_pag_select{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #17e775;
+    background: #fff;
+    color: #2193b0;
     /* margin: 0.5rem; */
     border-radius: 5px;
-    width: 28px;
-    height: 28px;
+    width: 33px;
+    height: 33px;
 }

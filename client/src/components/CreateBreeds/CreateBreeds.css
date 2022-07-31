@@ -14,10 +14,9 @@
 .container_create{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 50%;
-    margin: 10px;
-    gap: 2rem
+    background: #156e85;
+    width: 100%;
+    height: 100%;
 }
 .create_item{
     display: flex;

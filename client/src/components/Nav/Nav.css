@@ -9,7 +9,9 @@
 .menu_busqueda{    
     display: flex;
     flex-direction: row;
-    align-items: center;
+    justify-content: center;
+    align-items: center;    
+    height: 100%;
     gap: 1rem
 }
 .Navbar{
@@ -19,7 +21,7 @@
 }
 
 .menu{
-    background: #036931;
+    background: #156e85;
     color: #fff;
     height: 70px;
 }
@@ -63,7 +65,7 @@
 }
 
 .menu__link:hover{
-    background-color: #019267;
+    background-color: #31b9db;
 }
 
 
@@ -83,7 +85,7 @@
     bottom: 0;
     width: max-content;
     transform: translateY(100%);
-    background: #036931;
+    background: #156e85;
     height: 140px;
     /* position: sticky; */
     overflow: auto;
@@ -94,10 +96,17 @@
 }
 
 .menu__link--inside:hover{
-    background-color: #019267;
+    background-color: #31b9db;
 }
 .buton__container{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 100%;
     color: white;
+}
+.buton__container :hover{
+    background-color: #31b9db;
 }
 .menu__hamburguer{
     height: 100%;
@@ -127,7 +136,7 @@
 
     .menu__item--active{
         --transform: rotate(0);
-        --background: #019267;
+        --background: #31b9db;
     }
 
     .menu__item--show{
@@ -142,7 +151,7 @@
         top: 70px;
         bottom: 0;
         right: 0;
-        background: #036931;
+        background: #156e85;
         overflow-y: auto;
         display: grid;
         grid-auto-rows: max-content;
