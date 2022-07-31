@@ -1,5 +1,7 @@
-
-
+.labelError{
+    color: red;
+    margin: 10px;
+}
 .create_breeds{
     display: flex;
     flex-direction: column;
@@ -40,7 +42,6 @@
     align-items: center;
     width: 94%;
     gap: 1rem;
-    margin: 10px;
 }
 .panel_temperaments{
     width: 50%;

@@ -19,6 +19,7 @@ const CreateBreeds = () => {
   }, []);
   //   const { temperaments, labelSelect } = useSelector((state) => state);
   const { temperaments_search } = useSelector((state) => state);
+  const [labelError, setLabelError] = useState({ label: "" });
   const [breed, setBreed] = useState({
     id: v4(),
     name: "",
@@ -65,10 +66,49 @@ const CreateBreeds = () => {
     dispatch(getTemperamentsByName(value));
   };
   const handleCreateBreed = () => {
-    console.log(breed);
-    dispatch(addBreed(breed));
-    dispatch(cargar_temperamentos([]));
-    navigate("/breeds");
+    // name: "",
+    // height: "",
+    // weight: "",
+    // life_span: "",
+    // temperaments: [],
+    if (breed.temperaments.length > 0) {
+      if (breed.name.length > 0) {
+        if (breed.height.length > 0) {
+          if (breed.weight.length > 0) {
+            if (breed.life_span.length > 0) {
+              dispatch(addBreed(breed));
+              dispatch(cargar_temperamentos([]));
+              navigate("/breeds");
+            } else {
+              setLabelError({
+                ...labelError,
+                label: "Introduzca el rango de años de vida",
+              });
+            }
+          } else {
+            setLabelError({
+              ...labelError,
+              label: "Introduzca el peso de la raz",
+            });
+          }
+        } else {
+          setLabelError({
+            ...labelError,
+            label: "Introduzca el tamaño de la raz",
+          });
+        }
+      } else {
+        setLabelError({
+          ...labelError,
+          label: "Introduzca el nombre",
+        });
+      }
+    } else {
+      setLabelError({
+        ...labelError,
+        label: "Seleccione al menos un temeperamento",
+      });
+    }
   };
   return (
     <div>
@@ -168,6 +208,9 @@ const CreateBreeds = () => {
               })}
             </div>
           </div>
+        </div>
+        <div className="labelError">
+          <label>{labelError.label}</label>
         </div>
         <div className="group_btn">
           <button onClick={handleCreateBreed}>Create</button>
