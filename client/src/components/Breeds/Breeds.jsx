@@ -11,8 +11,8 @@ const Breeds = () => {
   const dispatch = useDispatch();
   const { breeds, pagina, lim_paginas } = useSelector((state) => state);
   useEffect(() => {
-    dispatch(get_all_breeds());
     dispatch(getAllTemperaments());
+    dispatch(get_all_breeds());
   }, []);
   let lim = lim_paginas;
   let max = pagina * lim;

@@ -29,8 +29,8 @@ const CreateBreeds = () => {
     image: "",
     temperaments: [],
   });
-  const [height, setHeigth] = useState({ height1: "", height2: "" });
-  const [weight, setWeigth] = useState({ weight1: "", weight2: "" });
+  const [height, setHeigth] = useState({ height1: 0, height2: 0 });
+  const [weight, setWeigth] = useState({ weight1: 0, weight2: 0 });
   const [life_span, setLife_span] = useState({
     life_span1: "",
     life_span2: "",
@@ -103,6 +103,55 @@ const CreateBreeds = () => {
       breed.life_span = value;
     }
   }
+  function verificar_entero(h1, h2, w1, w2, ls1, ls2) {
+    console.log(h1);
+    if (Number.isInteger(h1 / 1)) {
+      if (Number.isInteger(h2 / 1)) {
+        if (Number.isInteger(w1 / 1)) {
+          if (Number.isInteger(w2 / 1)) {
+            if (Number.isInteger(ls1 / 1)) {
+              if (Number.isInteger(ls2 / 1)) {
+                return true;
+              } else {
+                setLabelError({
+                  ...labelError,
+                  label:
+                    "El Segundo parametro de los años de vida no es un numero entero",
+                });
+              }
+            } else {
+              setLabelError({
+                ...labelError,
+                label:
+                  "El Primer parametro de los años de vida no es un numero entero",
+              });
+            }
+          } else {
+            setLabelError({
+              ...labelError,
+              label: "El Segundo parametro del peso no es un numero entero",
+            });
+          }
+        } else {
+          setLabelError({
+            ...labelError,
+            label: "El Primer parametro del peso no es un numero entero",
+          });
+        }
+      } else {
+        setLabelError({
+          ...labelError,
+          label: "El Segundo parametro de la altura no es un numero entero",
+        });
+      }
+    } else {
+      setLabelError({
+        ...labelError,
+        label: "El Primer parametro de la altura no es un numero entero",
+      });
+    }
+    return false;
+  }
   const handleCreateBreed = () => {
     cargar_datos("heigth", height.height1 + "-" + height.height2);
     cargar_datos("weight", weight.weight1 + "-" + weight.weight2);
@@ -110,53 +159,64 @@ const CreateBreeds = () => {
       "life_span",
       life_span.life_span1 + "-" + life_span.life_span2
     );
-    if (breed.temperaments.length > 0) {
-      if (breed.name.length > 0) {
-        if (height.height1.length > 0 && height.height2.length > 0) {
-          if (weight.weight1.length > 0 && weight.weight2.length > 0) {
-            if (
-              life_span.life_span1.length > 0 &&
-              life_span.life_span2.length > 0
-            ) {
-              // if (breed.image.length > 0 && breed.image.length > 0) {
-              dispatch(addBreed(breed));
-              dispatch(cargar_temperamentos([]));
-              navigate("/breeds");
-              // } else {
-              //   setLabelError({
-              //     ...labelError,
-              //     label: "Introduzca la url de la imagen",
-              //   });
-              // }
+    if (
+      verificar_entero(
+        height.height1,
+        height.height2,
+        weight.weight1,
+        weight.weight2,
+        life_span.life_span1,
+        life_span.life_span2
+      )
+    ) {
+      if (breed.temperaments.length > 0) {
+        if (breed.name.length > 0) {
+          if (height.height1.length > 0 && height.height2.length > 0) {
+            if (weight.weight1.length > 0 && weight.weight2.length > 0) {
+              if (
+                life_span.life_span1.length > 0 &&
+                life_span.life_span2.length > 0
+              ) {
+                // if (breed.image.length > 0 && breed.image.length > 0) {
+                dispatch(addBreed(breed));
+                dispatch(cargar_temperamentos([]));
+                navigate("/breeds");
+                // } else {
+                //   setLabelError({
+                //     ...labelError,
+                //     label: "Introduzca la url de la imagen",
+                //   });
+                // }
+              } else {
+                setLabelError({
+                  ...labelError,
+                  label: "Introduzca el rango de años de vida",
+                });
+              }
             } else {
               setLabelError({
                 ...labelError,
-                label: "Introduzca el rango de años de vida",
+                label: "Introduzca el peso de la raza",
               });
             }
           } else {
             setLabelError({
               ...labelError,
-              label: "Introduzca el peso de la raza",
+              label: "Introduzca el tamaño de la raza",
             });
           }
         } else {
           setLabelError({
             ...labelError,
-            label: "Introduzca el tamaño de la raza",
+            label: "Introduzca el nombre de la raza",
           });
         }
       } else {
         setLabelError({
           ...labelError,
-          label: "Introduzca el nombre de la raza",
+          label: "Seleccione al menos un temeperamento",
         });
       }
-    } else {
-      setLabelError({
-        ...labelError,
-        label: "Seleccione al menos un temeperamento",
-      });
     }
   };
   return (
