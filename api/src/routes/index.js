@@ -3,6 +3,7 @@ const {
   getAllDogs,
   getDogById,
   addBreed,
+  modifyBreed,
 } = require("../controllers/DogsControllers");
 const {
   getTemperaments,
@@ -18,6 +19,7 @@ router.get("/breeds/:idBreed", getDogById);
 router.get("/temperaments", getTemperaments);
 router.post("/temperaments", addTemperaments);
 router.post("/breeds", addBreed);
+router.put("/breeds/:idBreed", modifyBreed);
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 

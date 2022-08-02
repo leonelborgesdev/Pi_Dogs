@@ -7,7 +7,9 @@ export const CardBreed = ({ breed }) => {
   return (
     <div className="card">
       <div className="card_img">
-        <img src={breed.image} width={"350px"} height={"250px"} />
+        {breed.image && (
+          <img src={breed.image} width={"350px"} height={"250px"} />
+        )}
       </div>
       <h1>{breed.name}</h1>
       <div className="card_temperaments">

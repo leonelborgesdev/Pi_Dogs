@@ -68,5 +68,40 @@ async function addBreed(req, res) {
       .json({ message: "Ocurrio un error al insertar los datos" });
   }
 }
-
-module.exports = { getAllDogs, getDogById, addBreed };
+async function modifyBreed(req, res) {
+  const { idBreed } = req.params;
+  const { id, name, height, weight, life_span, image, temperaments } = req.body;
+  let breed = { id, name, height, weight, life_span, image, temperaments };
+  console.log(idBreed, breed);
+  try {
+    if (breed.name) {
+      const verificar_nombre = await Dog.findOne({
+        where: {
+          name: breed.name,
+        },
+      });
+      if (verificar_nombre) {
+        return res.status(400).json({
+          ok: false,
+          msg: `La raza ${breed.name} ya existe`,
+        });
+      }
+    }
+    const BreedUpdate = await Dog.update(breed);
+    // await BreedDetail.
+    const breedModify = await Dog.findByPk(idBreed, {
+      include: {
+        model: Temperament,
+        where: { id: idBreed },
+      },
+    });
+    return res.status(200).json({ ok: true, breedModify });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      ok: false,
+      msg: `Hable con el Administrador`,
+    });
+  }
+}
+module.exports = { getAllDogs, getDogById, addBreed, modifyBreed };
