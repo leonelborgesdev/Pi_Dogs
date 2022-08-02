@@ -1,10 +1,10 @@
 .paginado{
     background: #2193b0;
-    position: sticky;
     display: flex;
     align-items: center;
     justify-content: center;
     /* top: 70px; */
+    position: sticky;
     bottom: 0px;
     animation: moverArriba 1s ease-in;
 }

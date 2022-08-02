@@ -8,8 +8,8 @@ export const LandingPage = () => {
     <div className="landing">
       <div className="container_landing">
         <div className="textos">
-          <h1>Razas de Perros</h1>
-          <h2>
+          <h1 className="textos_h1">Razas de Perros</h1>
+          <h2 className="textos_h2">
             Conoce todas las razas de perros, con imagenes, sus caracteristicas
             y crea tus propias razas
           </h2>

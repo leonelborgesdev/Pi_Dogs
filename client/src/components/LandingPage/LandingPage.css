@@ -25,11 +25,11 @@
     width: 50%;
     color: white;
 }
-.textos h1{
+.textos .textos_h1{
     font-size: 80px;
     animation: moverDerecha 1s ease-in;
 }
-.textos h2{
+.textos .textos_h2{
     font-size: 25px;
     animation: moverIzquierda 1s ease-in;
 }
@@ -37,6 +37,7 @@
     display: inline-block;
     color: #fff;
     font-weight: 300;
+    font-size: 18px;
     text-decoration: none;
     margin-top: 30px;
     border: 1px solid #fff;
@@ -46,7 +47,7 @@
     padding: 10px 0;
     animation: moverArriba 1s ease-in;
 }
-.landing .container_landing .textos .textos_buton :hover{
+.textos .textos_buton:hover{
     background-color: #fff;
     color: #2193b0;
 }
@@ -109,7 +110,7 @@
     .img_landing{
         height: 400px;
     }
-    .textos h1{
+    .textos .textos_h1{
         font-size: 70px;
     }
 }
@@ -117,10 +118,10 @@
     .img_landing{
         height: 300px;
     }
-    .textos h1{
+    .textos .textos_h1{
         font-size: 60px;
     }
-    .textos h2{
+    .textos .textos_h2{
         font-size: 20px;
     }
 }
@@ -128,15 +129,15 @@
     .img_landing{
         height: 280px;
     }
-    .textos h1{
+    .textos .textos_h1{
         font-size: 55px;
     }
-    .textos h2{
+    .textos .textos_h2{
         font-size: 15px;
     }
 }
 @media screen and (max-width:700px) {
-    .textos h1{
+    .textos .textos_h1{
         font-size: 45px;
     }
 }
@@ -153,10 +154,10 @@
         width: 95%;
         text-align: center;
     }
-    .textos h1{
+    .textos .textos_h1{
         font-size: 55px;
     }
-    .textos h2{
+    .textos .textos_h2{
         font-size: 20px;
     }
 }
@@ -167,10 +168,10 @@
     .img_landing{
         height: 160px;
     }
-    .textos h1{
+    .textos .textos_h1{
         font-size: 35px;
     }
-    .textos h2{
+    .textos .textos_h2{
         font-size: 15px;
     }
     .textos_buton{
