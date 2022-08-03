@@ -7,6 +7,7 @@ import {
   getBreedById,
   getTemperamentsByName,
   get_all_breeds,
+  modifyBreed,
 } from "../../redux/actions";
 import Nav from "../Nav/Nav";
 import "./ModifyBreeds.css";
@@ -16,15 +17,7 @@ export const ModifyBreeds = () => {
   console.log(idBreed);
   const { temperaments_search, breed } = useSelector((state) => state);
   const [labelError, setLabelError] = useState({ label: "" });
-  const [breedMody, setBreedMody] = useState({
-    id: "",
-    name: "",
-    height: "",
-    weight: "",
-    life_span: "",
-    image: "",
-    temperaments: cargar_datos(breed),
-  });
+  const [breedMody, setBreedMody] = useState(cargar_datos(breed));
   useEffect(() => {
     dispatch(getAllTemperaments());
   }, []);
@@ -36,14 +29,33 @@ export const ModifyBreeds = () => {
     dispatch(getBreedById(idBreed));
   }, []);
   function cargar_datos(breedId) {
-    return breedId.temperaments.map((temperament) => {
-      return temperament.id;
-    });
+    return {
+      id: breedId.id,
+      name: breedId.name,
+      height: breedId.height,
+      weight: breedId.weight,
+      life_span: breedId.life_span,
+      image: breedId.image,
+      temperaments: breedId.temperaments.map((temperament) => {
+        return temperament.id;
+      }),
+    };
+  }
+  function cargar_datos_breedMody(name, value) {
+    if (name === "heigth") {
+      breedMody.height = value;
+    }
+    if (name === "weight") {
+      breedMody.weight = value;
+    }
+    if (name === "life_span") {
+      breedMody.life_span = value;
+    }
   }
   const vec = Object.keys(breed).length > 0 && breed.height.split("-");
   const vec2 = Object.keys(breed).length > 0 && breed.weight.split("-");
   const vec3 = Object.keys(breed).length > 0 && breed.life_span.split(" ");
-
+  // console.log(breed.life_span.subString(0, breed.life_span.length - 5));
   const [height, setHeigth] = useState({ height1: vec[0], height2: vec[1] });
   const [weight, setWeigth] = useState({ weight1: vec2[0], weight2: vec2[1] });
   const [life_span, setLife_span] = useState({
@@ -52,7 +64,6 @@ export const ModifyBreeds = () => {
   });
   const handleTemperamentDeseleccionar = (e) => {
     const { id } = e.target;
-    console.log(id);
     for (let i = 0; i < breedMody.temperaments.length; i++) {
       if (breedMody.temperaments[i] === id) {
         breedMody.temperaments.splice(i, 1);
@@ -80,6 +91,43 @@ export const ModifyBreeds = () => {
     const { value } = e.target;
     dispatch(getTemperamentsByName(value));
   };
+  const handleInputChangeheigth = (e) => {
+    const { name, value } = e.target;
+    setHeigth({
+      ...height,
+      [name]: value,
+    });
+  };
+  const handleInputChangeweigth = (e) => {
+    const { name, value } = e.target;
+    setWeigth({
+      ...weight,
+      [name]: value,
+    });
+  };
+  const handleInputChangelifespan = (e) => {
+    const { name, value } = e.target;
+    setLife_span({
+      ...life_span,
+      [name]: value,
+    });
+  };
+  const handleModifyBreed = (e) => {
+    cargar_datos_breedMody("heigth", height.height1 + " - " + height.height2);
+    cargar_datos_breedMody("weight", weight.weight1 + " - " + weight.weight2);
+    cargar_datos_breedMody(
+      "life_span",
+      life_span.life_span1 + " - " + life_span.life_span2 + " years"
+    );
+    dispatch(modifyBreed(breedMody));
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setBreedMody({
+      ...breedMody,
+      [name]: value,
+    });
+  };
   return (
     <div>
       {console.log(breedMody)}
@@ -92,22 +140,25 @@ export const ModifyBreeds = () => {
               <h3 className="input_item_h3">Name:</h3>
               <input
                 type="text"
-                placeholder={breed.name ? breed.name : ""}
+                defaultValue={breed.name ? breed.name : ""}
                 name="name"
+                onChange={handleInputChange}
               />
             </div>
             <div className="inputs_item">
               <h3 className="input_item_h3">Heigth:</h3>
               <input
                 type="text"
-                placeholder={`${height.height1}`}
+                defaultValue={`${height.height1}`}
                 name="heigth1"
+                onChange={handleInputChangeheigth}
               />
               <h3>-</h3>
               <input
                 type="text"
-                placeholder={`${height.height2}`}
+                defaultValue={`${height.height2}`}
                 name="heigth2"
+                onChange={handleInputChangeheigth}
               />
             </div>
             <div className="inputs_item">
@@ -115,13 +166,15 @@ export const ModifyBreeds = () => {
               <input
                 type="text"
                 name="weigth1"
-                placeholder={`${weight.weight1}`}
+                defaultValue={`${weight.weight1}`}
+                onChange={handleInputChangeweigth}
               />
               <h3>-</h3>
               <input
                 type="text"
                 name="weigth2"
-                placeholder={`${weight.weight2}`}
+                defaultValue={`${weight.weight2}`}
+                onChange={handleInputChangeweigth}
               />
             </div>
             <div className="inputs_item">
@@ -129,13 +182,15 @@ export const ModifyBreeds = () => {
               <input
                 type="text"
                 name="life_span1"
-                placeholder={`${life_span.life_span1}`}
+                defaultValue={`${life_span.life_span1}`}
+                onChange={handleInputChangelifespan}
               />
               <h3>-</h3>
               <input
                 type="text"
                 name="life_span2"
-                placeholder={`${life_span.life_span2}`}
+                defaultValue={`${life_span.life_span2}`}
+                onChange={handleInputChangelifespan}
               />
             </div>
             <div className="inputs_item">
@@ -143,7 +198,7 @@ export const ModifyBreeds = () => {
               <input
                 type="text"
                 name="image"
-                placeholder={breed.image ? breed.image : ""}
+                defaultValue={breed.image ? breed.image : ""}
               />
             </div>
           </div>
@@ -152,7 +207,7 @@ export const ModifyBreeds = () => {
               <h3 className="textCreate">Nombre:</h3>
               <input
                 type={"text"}
-                placeholder="Temperament..."
+                defaultValue="Temperament..."
                 name="name"
                 onChange={handleInputChangeSearch}
               />
@@ -191,7 +246,7 @@ export const ModifyBreeds = () => {
           </div>
         </div>
         <div className="group_btn">
-          <button>Modify</button>
+          <button onClick={handleModifyBreed}>Modify</button>
         </div>
       </div>
     </div>
