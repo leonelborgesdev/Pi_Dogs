@@ -152,11 +152,11 @@ const CreateBreeds = () => {
     return false;
   }
   const handleCreateBreed = () => {
-    cargar_datos("heigth", height.height1 + "-" + height.height2);
-    cargar_datos("weight", weight.weight1 + "-" + weight.weight2);
+    cargar_datos("heigth", height.height1 + " - " + height.height2);
+    cargar_datos("weight", weight.weight1 + " - " + weight.weight2);
     cargar_datos(
       "life_span",
-      life_span.life_span1 + "-" + life_span.life_span2
+      life_span.life_span1 + " - " + life_span.life_span2 + " years"
     );
     if (
       verificar_entero(
