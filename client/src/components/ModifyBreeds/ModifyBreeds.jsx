@@ -14,7 +14,6 @@ import "./ModifyBreeds.css";
 export const ModifyBreeds = () => {
   const dispatch = useDispatch();
   const { idBreed } = useParams();
-  console.log(idBreed);
   const { temperaments_search, breed } = useSelector((state) => state);
   const [labelError, setLabelError] = useState({ label: "" });
   const [breedMody, setBreedMody] = useState(cargar_datos(breed));
@@ -36,9 +35,11 @@ export const ModifyBreeds = () => {
       weight: breedId.weight,
       life_span: breedId.life_span,
       image: breedId.image,
-      temperaments: breedId.temperaments.map((temperament) => {
-        return temperament.id;
-      }),
+      temperaments: breedId.temperaments
+        ? breedId.temperaments.map((temperament) => {
+            return temperament.id;
+          })
+        : [],
     };
   }
   function cargar_datos_breedMody(name, value) {
@@ -52,16 +53,37 @@ export const ModifyBreeds = () => {
       breedMody.life_span = value;
     }
   }
-  const vec = Object.keys(breed).length > 0 && breed.height.split("-");
-  const vec2 = Object.keys(breed).length > 0 && breed.weight.split("-");
-  const vec3 = Object.keys(breed).length > 0 && breed.life_span.split(" ");
+  // const vec2 = Object.keys(breed).length > 0 && breed.weight.split("-");
+  // const vec3 = Object.keys(breed).length > 0 && breed.life_span.split(" ");
   // console.log(breed.life_span.subString(0, breed.life_span.length - 5));
-  const [height, setHeigth] = useState({ height1: vec[0], height2: vec[1] });
-  const [weight, setWeigth] = useState({ weight1: vec2[0], weight2: vec2[1] });
-  const [life_span, setLife_span] = useState({
-    life_span1: vec3[0],
-    life_span2: vec3[2],
-  });
+  const InicialStateHeight = (Idbreed) => {
+    if (Idbreed.height && Idbreed.height !== undefined) {
+      const vec = Idbreed.height.split("-");
+      return { height1: vec[0], height2: vec[1] };
+    } else {
+      return { height1: 0, height2: 0 };
+    }
+  };
+  const [height, setHeigth] = useState(InicialStateHeight(breedMody));
+  //const [weight, setWeigth] = useState({ weight1: vec2[0], weight2: vec2[1] });
+  const InicialStateWeight = (Idbreed) => {
+    if (Idbreed.weight && Idbreed.weight !== undefined) {
+      const vec = Idbreed.weight.split("-");
+      return { weight1: vec[0], weight2: vec[1] };
+    } else {
+      return { weight1: 0, weight2: 0 };
+    }
+  };
+  const [weight, setWeigth] = useState(InicialStateWeight(breedMody));
+  const InicialStateLifeSpan = (Idbreed) => {
+    if (Idbreed.life_span && Idbreed.life_span !== undefined) {
+      const vec = Idbreed.life_span.split(" ");
+      return { life_span1: vec[0], life_span2: vec[2] };
+    } else {
+      return { life_span1: 0, life_span2: 0 };
+    }
+  };
+  const [life_span, setLife_span] = useState(InicialStateLifeSpan(breedMody));
   const handleTemperamentDeseleccionar = (e) => {
     const { id } = e.target;
     for (let i = 0; i < breedMody.temperaments.length; i++) {
@@ -149,14 +171,14 @@ export const ModifyBreeds = () => {
               <h3 className="input_item_h3">Heigth:</h3>
               <input
                 type="text"
-                defaultValue={`${height.height1}`}
+                defaultValue={breed.height ? breed.height.split("-")[0] : ""}
                 name="heigth1"
                 onChange={handleInputChangeheigth}
               />
               <h3>-</h3>
               <input
                 type="text"
-                defaultValue={`${height.height2}`}
+                defaultValue={breed.height ? breed.height.split("-")[1] : ""}
                 name="heigth2"
                 onChange={handleInputChangeheigth}
               />
@@ -166,14 +188,14 @@ export const ModifyBreeds = () => {
               <input
                 type="text"
                 name="weigth1"
-                defaultValue={`${weight.weight1}`}
+                defaultValue={breed.weight ? breed.weight.split("-")[0] : ""}
                 onChange={handleInputChangeweigth}
               />
               <h3>-</h3>
               <input
                 type="text"
                 name="weigth2"
-                defaultValue={`${weight.weight2}`}
+                defaultValue={breed.weight ? breed.weight.split("-")[1] : ""}
                 onChange={handleInputChangeweigth}
               />
             </div>
@@ -207,7 +229,7 @@ export const ModifyBreeds = () => {
               <h3 className="textCreate">Nombre:</h3>
               <input
                 type={"text"}
-                defaultValue="Temperament..."
+                placeholder="Temperament..."
                 name="name"
                 onChange={handleInputChangeSearch}
               />
