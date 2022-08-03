@@ -13,7 +13,8 @@
 }
 .form_modify_breed{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     width: 100%;
     height: 100%;
 }
@@ -23,7 +24,7 @@
     background: #156e85;
     width: 100%;
     padding: 1rem;
-    gap: 1.5rem
+    gap: 1rem
 }
 .inputs_item > input{
     width: 100%;

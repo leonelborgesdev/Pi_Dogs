@@ -27,6 +27,7 @@ export const get_all_breeds = () => {
 };
 
 export const getBreedById = (idBreed) => {
+  console.log(idBreed);
   return async function (dispatch) {
     const response = await fetch(`${api}/breeds/${idBreed}`);
     try {
