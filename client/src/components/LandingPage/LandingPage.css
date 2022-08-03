@@ -1,36 +1,57 @@
+.landing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.circulo{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1e89a3;
+    clip-path: circle(20% at 0% 0);
+}
 .container_landing{
-    width: 95%;
-    height: 600px;
+    min-width: 90%;
     max-width: 1200px;
     display: flex;
     align-items: center;
-    margin: auto;
-    justify-content: space-around;
-}
-.landing{
-    background: #2193b0; 
-    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
-    background: linear-gradient(to right, #6dd5ed, #2193b0);    
+    height: 100vh;
+    justify-content: center;
 }
 .img_landing{
     display: block;
-    height: 450px;
+    height: 500px;
     object-fit: cover;
-    border-radius: 400px;
+    border-radius: 50%;
     background: #2193b0;
+    border: 1px solid #6dd5ed;
     width: auto;
     animation: moverAbajo 1s ease-in;
+}
+.img_huellitas{
+    position: fixed;
+    top: 45%;
+    left: -100px;
+}
+.img_huellitas_der{
+    position: fixed;
+    right: -100px;
+    top: 0px;
 }
 .textos{
     width: 50%;
     color: white;
+    z-index: 1;
 }
 .textos .textos_h1{
-    font-size: 80px;
+    font-size: 85px;
+    color: #1e89a3;;
     animation: moverDerecha 1s ease-in;
 }
 .textos .textos_h2{
-    font-size: 25px;
+    font-size: 20px;
     animation: moverIzquierda 1s ease-in;
 }
 .textos_buton{
@@ -40,9 +61,9 @@
     font-size: 18px;
     text-decoration: none;
     margin-top: 30px;
-    border: 1px solid #fff;
+    border: 1px solid #1e89a3;
     width: 150px;
-    border-radius: 3px;
+    border-radius: 10px;
     text-align: center;
     padding: 10px 0;
     animation: moverArriba 1s ease-in;
@@ -52,18 +73,23 @@
     color: #2193b0;
 }
 .wave{
-    height: 100%;
     width: 100%;
-    position: sticky;
+    position: fixed;
     bottom: 0px;
-    background: #2193b0;
-    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
-    background: linear-gradient(to right, #6dd5ed, #2193b0);
+    padding: 0;
+    height: 250px;
+}
+
+.wave svg{
+    height: 250px; 
+    min-width: 100%;
+    margin-bottom: 0px;
 }
 .cardImg{
     display: flex;
     justify-content: center;
     padding: 10px;
+    z-index: 1;
 }
 @keyframes moverIzquierda {
     0%{
@@ -113,16 +139,25 @@
     .textos .textos_h1{
         font-size: 70px;
     }
+    .textos .textos_h2{
+        font-size: 15px;
+    }
 }
 @media screen and (max-width:900px) {
     .img_landing{
         height: 300px;
     }
+    .wave{
+        height: 150px;
+    }
+    .wave svg{
+        height: 150px; width: 100%
+    }
     .textos .textos_h1{
         font-size: 60px;
     }
     .textos .textos_h2{
-        font-size: 20px;
+        font-size: 15px;
     }
 }
 @media screen and (max-width:800px) {
@@ -146,6 +181,7 @@
         width: 100%;
         flex-wrap: wrap-reverse;
         justify-content: center;
+        align-items: center;
     }
     .img_landing{
         height: 300px;
@@ -164,6 +200,12 @@
 @media screen and (max-width:440px) {
     .container_landing{
     height: auto;
+    }
+    .wave{
+        height: 80px;
+    }
+    .wave svg{
+        height: 80px; width: 100%
     }
     .img_landing{
         height: 160px;

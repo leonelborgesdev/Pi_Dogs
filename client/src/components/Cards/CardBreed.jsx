@@ -6,11 +6,7 @@ export const CardBreed = ({ breed }) => {
   const navigate = useNavigate();
   return (
     <div className="card">
-      <div className="card_img">
-        {breed.image && (
-          <img src={breed.image} width={"350px"} height={"250px"} />
-        )}
-      </div>
+      <div className="card_img">{breed.image && <img src={breed.image} />}</div>
       <h1>{breed.name}</h1>
       <div className="card_temperaments">
         <h3>Weight(kg): {breed.weight}</h3>
