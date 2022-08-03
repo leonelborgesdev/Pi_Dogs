@@ -19,9 +19,7 @@ export const BreedDetail = () => {
       <h1>Breed Detail</h1>
       {breed ? (
         <div className="breed_detail">
-          {breed.image && (
-            <img src={breed.image} width="450px" height="350px" />
-          )}
+          {breed.image && <img src={breed.image} width="500px" />}
           <div className="breed_descripcion">
             <h3>Name: {breed.name}</h3>
             <h3>Height: {breed.height}</h3>
