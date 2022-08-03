@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 25px;
-    background-color: #fff;
+    background-color: #156e85;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
     padding: 1rem;
     margin: 10px;
@@ -20,12 +20,12 @@
     height: 100%;
 }
 .textCreate{
-    background: #fff;
+    background: #156e85;
 }
 .create_item{
     display: flex;
     flex-direction: row;
-    background: #fff;
+    background: #156e85;
     width: 100%;
     margin-top: 30px;
     gap: 1.5rem
@@ -54,7 +54,7 @@
     height: 230px;
     width: 100%;
     border-radius: 5px;
-    border: 1px solid cyan;
+    border: 1px solid #6dd5ed;
     overflow: auto;
 }
 .search_temperaments{
@@ -73,8 +73,8 @@
     display: flex;
     padding: 0px 0.7rem;
     justify-content: center;
-    border-color: aqua;
-    background-color: rgba(9, 223, 27, 0.466);
+    border-color: #6dd5ed;
+    background-color: #6dd5ed;
     border-radius: 15px;
     /* box-shadow: 0px 0px 15px rgba(0, 0, 0, 1.5); */
 }
@@ -82,10 +82,10 @@
     display: flex;
     padding: 0px 0.7rem;
     justify-content: center;
-    border: 1px solid white;
+    border: 1px solid #156e85;
     flex-direction: column;
     width: 100%;
-    background-color: rgba(9, 223, 27, 0.466);
+    background-color: #6dd5ed;
     border-radius: 15px;
 }
 .label_table{

@@ -35,7 +35,6 @@ export const ModifyBreeds = () => {
   });
   return (
     <div>
-      {console.log(breed)}
       <Nav />
       <div className="modify_breeds">
         <h1>Modify Breed</h1>
