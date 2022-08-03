@@ -27,7 +27,6 @@ export const get_all_breeds = () => {
 };
 
 export const getBreedById = (idBreed) => {
-  console.log(idBreed);
   return async function (dispatch) {
     const response = await fetch(`${api}/breeds/${idBreed}`);
     try {
@@ -36,6 +35,9 @@ export const getBreedById = (idBreed) => {
         dispatch({
           type: GET_BREED_BY_ID,
           payload: date,
+          payloadLabelSelect: date.temperaments.map((temperament) => {
+            return temperament.id;
+          }),
         });
       }
     } catch (error) {

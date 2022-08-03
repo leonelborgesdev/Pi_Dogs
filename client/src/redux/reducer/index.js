@@ -38,6 +38,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         breed: action.payload,
+        labelSelect: action.payloadLabelSelect,
       };
     case GET_ALL_TEMPERAMENTS:
       return {
