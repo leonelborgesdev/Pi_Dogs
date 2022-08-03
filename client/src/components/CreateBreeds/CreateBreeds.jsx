@@ -104,7 +104,6 @@ const CreateBreeds = () => {
     }
   }
   function verificar_entero(h1, h2, w1, w2, ls1, ls2) {
-    console.log(h1);
     if (Number.isInteger(h1 / 1)) {
       if (Number.isInteger(h2 / 1)) {
         if (Number.isInteger(w1 / 1)) {
@@ -177,16 +176,9 @@ const CreateBreeds = () => {
                 life_span.life_span1.length > 0 &&
                 life_span.life_span2.length > 0
               ) {
-                // if (breed.image.length > 0 && breed.image.length > 0) {
                 dispatch(addBreed(breed));
                 dispatch(cargar_temperamentos([]));
                 navigate("/breeds");
-                // } else {
-                //   setLabelError({
-                //     ...labelError,
-                //     label: "Introduzca la url de la imagen",
-                //   });
-                // }
               } else {
                 setLabelError({
                   ...labelError,

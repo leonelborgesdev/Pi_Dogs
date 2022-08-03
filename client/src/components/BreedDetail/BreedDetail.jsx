@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import Nav from "../Nav/Nav";
 import { getBreedById } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./BreedDetail.css";
 
 export const BreedDetail = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { idBreed } = useParams();
   useEffect(() => {
     dispatch(getBreedById(idBreed));
@@ -41,6 +42,15 @@ export const BreedDetail = () => {
                 );
               })}
             </h3>
+            <div className="group_btn">
+              <button
+                onClick={() => {
+                  navigate(`/modify/${breed.id}`);
+                }}
+              >
+                Modificar
+              </button>
+            </div>
           </div>
         </div>
       ) : (

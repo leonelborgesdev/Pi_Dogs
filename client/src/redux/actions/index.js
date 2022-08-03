@@ -29,12 +29,16 @@ export const get_all_breeds = () => {
 export const getBreedById = (idBreed) => {
   return async function (dispatch) {
     const response = await fetch(`${api}/breeds/${idBreed}`);
-    if (response) {
-      const date = await response.json();
-      dispatch({
-        type: GET_BREED_BY_ID,
-        payload: date,
-      });
+    try {
+      if (response) {
+        const date = await response.json();
+        dispatch({
+          type: GET_BREED_BY_ID,
+          payload: date,
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 };
@@ -155,6 +159,18 @@ export const addBreed = (breed) => {
   return async function () {
     const response = await fetch(`${api}/breeds`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(breed),
+    });
+    return response.json();
+  };
+};
+export const modifyBreed = (breed) => {
+  return async function () {
+    const response = await fetch(`${api}/breeds/${breed.id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
