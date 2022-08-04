@@ -32,49 +32,110 @@ export const ModifyBreeds = () => {
     temperaments: [],
   });
   const [temperamentLength, setTemperamentLength] = useState({ tamaño: [] });
-  function cargar_datos(breedInput, BreedTemp) {
-    console.log(breedInput, BreedTemp);
-    return {
-      id: breedId.id,
-      name: breedId.name,
-      height: breedId.height,
-      weight: breedId.weight,
-      life_span: breedId.life_span,
-      image: breedId.image,
-      temperaments: breedId.temperaments
-        ? breedId.temperaments.map((temperament) => {
-            return temperament.id;
-          })
-        : [],
-    };
+  function verificar_temp_eliminados(BreedTemp, TempTamaño) {
+    console.log("verificar tempe eliminados", BreedTemp, TempTamaño);
+    for (let i = 0; i < TempTamaño.length; i++) {
+      let ban = false;
+      for (let j = 0; j < BreedTemp.length; j++) {
+        if (TempTamaño[i].id == BreedTemp[j].id) {
+          ban = true;
+        }
+      }
+      if (ban === false) {
+        return false;
+      }
+    }
+    return true;
   }
-  const InicialStateHeight = (Idbreed) => {
-    if (Idbreed.height && Idbreed.height !== undefined) {
-      const vec = Idbreed.height.split("-");
-      return { height1: vec[0], height2: vec[1] };
-    } else {
-      return { height1: 0, height2: 0 };
+  function cargar_datos(breedInput, BreedTemp) {
+    console.log(breedInput, BreedTemp, temperamentLength);
+    const breedReturn = {};
+    //-----------------------temperaments: []-------------------------------
+    if (temperamentLength.tamaño.length > 0) {
+      if (BreedTemp.temperaments.length > temperamentLength.tamaño.length) {
+        breedReturn["temperaments"] = BreedTemp.temperaments;
+      } else {
+        if (
+          verificar_temp_eliminados(
+            BreedTemp.temperaments,
+            temperamentLength.tamaño
+          ) === false
+        ) {
+          breedReturn["temperaments"] = BreedTemp.temperaments;
+        }
+      }
     }
-  };
-  const [height, setHeigth] = useState(InicialStateHeight(breed));
-  const InicialStateWeight = (Idbreed) => {
-    if (Idbreed.weight && Idbreed.weight !== undefined) {
-      const vec = Idbreed.weight.split("-");
-      return { weight1: vec[0], weight2: vec[1] };
-    } else {
-      return { weight1: 0, weight2: 0 };
+    //----------------------name: ""-----------------------------
+    if (breedInput.name.length > 0) {
+      breedReturn["name"] = breedInput.name;
     }
-  };
-  const [weight, setWeigth] = useState(InicialStateWeight(breed));
-  const InicialStateLifeSpan = (Idbreed) => {
-    if (Idbreed.life_span && Idbreed.life_span !== undefined) {
-      const vec = Idbreed.life_span.split(" ");
-      return { life_span1: vec[0], life_span2: vec[2] };
-    } else {
-      return { life_span1: 0, life_span2: 0 };
+    //-----------------------image: ""---------------------------
+    if (breedInput.image.length > 0) {
+      breedReturn["image"] = breedInput.image;
     }
-  };
-  const [life_span, setLife_span] = useState(InicialStateLifeSpan(breed));
+    //-----------------------heigth: ""--------------------------
+    const heightId = {
+      heightId1: BreedTemp.height.split("-")[0],
+      heightId2: BreedTemp.height.split("-")[1],
+    };
+    if (height.height1.length > 0 && heightId.heightId1 !== height.height1) {
+      if (
+        height.height2.length > 0 &&
+        heightId.heightId2 !== height.height2 &&
+        heightId.heightId2 !== undefined
+      ) {
+        breedReturn["height"] = height.height1 + " - " + height.height2;
+      } else {
+        if (heightId.heightId2 !== undefined) {
+          breedReturn["height"] = height.height1 + " - " + heightId.heightId2;
+        } else {
+          breedReturn["height"] = height.height1;
+        }
+      }
+    } else {
+      if (
+        height.height2.length > 0 &&
+        heightId.heightId2 !== height.height2 &&
+        heightId.heightId1 !== undefined
+      ) {
+        breedReturn["height"] = heightId.heightId1 + " - " + height.height2;
+      }
+    }
+    //-----------------------weigth: ""--------------------------
+    const weightId = {
+      weightId1: BreedTemp.weight.split("-")[0],
+      weightId2: BreedTemp.weight.split("-")[1],
+    };
+    console.log("weightId", weightId, weight);
+    if (weight.weight1.length > 0 && weightId.weightId1 !== weight.weight1) {
+      if (
+        weight.weight2.length > 0 &&
+        weightId.weightId2 !== weight.weight2 &&
+        weightId.weightId2 !== undefined
+      ) {
+        breedReturn["weight"] = weight.weight1 + " - " + weight.weight2;
+      } else {
+        if (weightId.weightId2 !== undefined) {
+          breedReturn["weight"] = weight.weight1 + " - " + weightId.weightId2;
+        } else {
+          breedReturn["weight"] = weight.weight1;
+        }
+      }
+    } else {
+      if (
+        weight.weight2.length > 0 &&
+        weightId.weightId2 !== weight.weight2 &&
+        weightId.weightId1 !== undefined
+      ) {
+        breedReturn["weight"] = weightId.weightId1 + " - " + weight.weight2;
+      }
+    }
+    console.log("breedReturn", breedReturn);
+  }
+  //---------------------------------rangos---------------------------------------
+  const [height, setHeigth] = useState({ height1: "", height2: "" });
+  const [weight, setWeigth] = useState({ weight1: "", weight2: "" });
+  const [life_span, setLife_span] = useState({ life_spa1: "", life_spa2: "" });
   const handleTemperamentDeseleccionar = (temperament) => {
     if (temperamentLength.tamaño.length === 0) {
       breed.temperaments.map((temperamento) => {
@@ -143,19 +204,6 @@ export const ModifyBreeds = () => {
       [name]: value,
     });
   };
-  function cargar_datos_breedMody(name, value) {
-    console.log(name, value);
-    if (name === "height") {
-      breedMody.height = value;
-    }
-    if (name === "weight") {
-      breedMody.weight = value;
-    }
-    if (name === "life_span") {
-      breedMody.life_span = value;
-    }
-  }
-
   function verificar_entero(h1, h2, w1, w2, ls1, ls2) {
     if (Number.isInteger(h1 / 1)) {
       if (Number.isInteger(h2 / 1)) {
@@ -205,13 +253,7 @@ export const ModifyBreeds = () => {
     return false;
   }
   const handleModifyBreed = () => {
-    cargar_datos_breedMody("height", height.height1 + " - " + height.height2);
-    cargar_datos_breedMody("weight", weight.weight1 + " - " + weight.weight2);
-    cargar_datos_breedMody(
-      "life_span",
-      life_span.life_span1 + " - " + life_span.life_span2 + " years"
-    );
-    console.log("breedMody", breedMody, "breed", breed);
+    cargar_datos(breedMody, breed);
     if (
       verificar_entero(
         height.height1,
@@ -227,7 +269,6 @@ export const ModifyBreeds = () => {
           if (height.height1.length > 0) {
             if (weight.weight1.length > 0) {
               if (life_span.life_span1.length > 0) {
-                cargar_datos(breedMody, breed);
                 //dispatch(modifyBreed(breedMody, idBreed));
                 // dispatch(cargar_temperamentos([]));
                 // navigate("/breeds");
@@ -301,7 +342,7 @@ export const ModifyBreeds = () => {
               <h3 className="input_item_h3">Weigth:</h3>
               <input
                 type="text"
-                name="weigth1"
+                name="weight1"
                 defaultValue={
                   breed.weight ? breed.weight.split("-")[0].trim() : ""
                 }
@@ -310,7 +351,7 @@ export const ModifyBreeds = () => {
               <h3>-</h3>
               <input
                 type="text"
-                name="weigth2"
+                name="weight2"
                 defaultValue={breed.weight ? breed.weight.split("-")[1] : ""}
                 onChange={handleInputChangeweigth}
               />
