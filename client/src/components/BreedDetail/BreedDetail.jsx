@@ -40,15 +40,6 @@ export const BreedDetail = () => {
                 );
               })}
             </h3>
-            <div className="group_btn">
-              <button
-                onClick={() => {
-                  navigate(`/modify/${breed.id}`);
-                }}
-              >
-                Modificar
-              </button>
-            </div>
           </div>
         </div>
       ) : (

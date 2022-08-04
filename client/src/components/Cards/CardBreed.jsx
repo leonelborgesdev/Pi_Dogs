@@ -29,6 +29,13 @@ export const CardBreed = ({ breed }) => {
         >
           Detail
         </button>
+        <button
+          onClick={() => {
+            navigate(`/modify/${breed.id}`);
+          }}
+        >
+          Modificar
+        </button>
       </div>
     </div>
   );

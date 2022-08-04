@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   cargar_temperamentos,
   getAllTemperaments,
@@ -13,20 +13,31 @@ import Nav from "../Nav/Nav";
 import "./ModifyBreeds.css";
 export const ModifyBreeds = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { idBreed } = useParams();
+  useEffect(async () => {
+    await dispatch(getAllTemperaments());
+  }, [dispatch]);
+  useEffect(async () => {
+    await dispatch(get_all_breeds());
+  }, [dispatch]);
+  useEffect(async () => {
+    console.log(idBreed);
+    await dispatch(getBreedById(idBreed));
+  }, [dispatch]);
   const { temperaments_search, breed } = useSelector((state) => state);
   const [labelError, setLabelError] = useState({ label: "" });
-  const [breedMody, setBreedMody] = useState(cargar_datos(breed));
-  useEffect(() => {
-    dispatch(getAllTemperaments());
-  }, []);
-  useEffect(() => {
-    dispatch(get_all_breeds());
-  }, []);
-  useEffect(() => {
-    console.log(idBreed);
-    dispatch(getBreedById(idBreed));
-  }, []);
+  // const [breedMody, setBreedMody] = useState(cargar_datos(breed));
+  const [breedMody, setBreedMody] = useState({
+    id: "",
+    name: "",
+    height: "",
+    weight: "",
+    life_span: "",
+    image: "",
+    temperaments: [],
+  });
+
   function cargar_datos(breedId) {
     return {
       id: breedId.id,
@@ -43,7 +54,9 @@ export const ModifyBreeds = () => {
     };
   }
   function cargar_datos_breedMody(name, value) {
-    if (name === "heigth") {
+    console.log(name, value);
+
+    if (name === "height") {
       breedMody.height = value;
     }
     if (name === "weight") {
@@ -53,9 +66,6 @@ export const ModifyBreeds = () => {
       breedMody.life_span = value;
     }
   }
-  // const vec2 = Object.keys(breed).length > 0 && breed.weight.split("-");
-  // const vec3 = Object.keys(breed).length > 0 && breed.life_span.split(" ");
-  // console.log(breed.life_span.subString(0, breed.life_span.length - 5));
   const InicialStateHeight = (Idbreed) => {
     if (Idbreed.height && Idbreed.height !== undefined) {
       const vec = Idbreed.height.split("-");
@@ -65,7 +75,6 @@ export const ModifyBreeds = () => {
     }
   };
   const [height, setHeigth] = useState(InicialStateHeight(breedMody));
-  //const [weight, setWeigth] = useState({ weight1: vec2[0], weight2: vec2[1] });
   const InicialStateWeight = (Idbreed) => {
     if (Idbreed.weight && Idbreed.weight !== undefined) {
       const vec = Idbreed.weight.split("-");
@@ -93,6 +102,16 @@ export const ModifyBreeds = () => {
     }
     dispatch(cargar_temperamentos(breedMody.temperaments));
   };
+  const handleTemperamentModyDeseleccionar = (e) => {
+    const { id } = e.target;
+    for (let i = 0; i < breed.temperaments.length; i++) {
+      console.log("idbreed:", breed.temperaments[i].id);
+      if (breed.temperaments[i].id === id) {
+        breed.temperaments.splice(i, 1);
+      }
+    }
+    dispatch(cargar_temperamentos(breedMody.temperaments));
+  };
   const handleVerificar = (id) => {
     let ban = false;
     if (breedMody.temperaments.length > 0) {
@@ -105,7 +124,8 @@ export const ModifyBreeds = () => {
     return ban;
   };
   const handleTemperament = (e) => {
-    const { id } = e.target;
+    const { id, value } = e.target;
+    console.log("objeto name", value);
     breedMody.temperaments.push(id);
     dispatch(cargar_temperamentos(breedMody.temperaments));
   };
@@ -119,6 +139,7 @@ export const ModifyBreeds = () => {
       ...height,
       [name]: value,
     });
+    console.log(height);
   };
   const handleInputChangeweigth = (e) => {
     const { name, value } = e.target;
@@ -134,15 +155,6 @@ export const ModifyBreeds = () => {
       [name]: value,
     });
   };
-  const handleModifyBreed = (e) => {
-    cargar_datos_breedMody("heigth", height.height1 + " - " + height.height2);
-    cargar_datos_breedMody("weight", weight.weight1 + " - " + weight.weight2);
-    cargar_datos_breedMody(
-      "life_span",
-      life_span.life_span1 + " - " + life_span.life_span2 + " years"
-    );
-    dispatch(modifyBreed(breedMody));
-  };
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setBreedMody({
@@ -150,9 +162,58 @@ export const ModifyBreeds = () => {
       [name]: value,
     });
   };
+  const handleModifyBreed = () => {
+    cargar_datos_breedMody("height", height.height1 + " - " + height.height2);
+    cargar_datos_breedMody("weight", weight.weight1 + " - " + weight.weight2);
+    cargar_datos_breedMody(
+      "life_span",
+      life_span.life_span1 + " - " + life_span.life_span2 + " years"
+    );
+    console.log(breedMody, breed);
+    if (breedMody.temperaments.length > 0) {
+      if (breedMody.name.length > 0 && breedMody.name !== undefined) {
+        if (height.height1.length > 0 && height.height2.length > 0) {
+          if (weight.weight1.length > 0 && weight.weight2.length > 0) {
+            if (
+              life_span.life_span1.length > 0 &&
+              life_span.life_span2.length > 0
+            ) {
+              //dispatch(modifyBreed(breedMody));
+              // dispatch(cargar_temperamentos([]));
+              // navigate("/breeds");
+            } else {
+              setLabelError({
+                ...labelError,
+                label: "Introduzca el rango de años de vida",
+              });
+            }
+          } else {
+            setLabelError({
+              ...labelError,
+              label: "Introduzca el peso de la raza",
+            });
+          }
+        } else {
+          setLabelError({
+            ...labelError,
+            label: "Introduzca el tamaño de la raza",
+          });
+        }
+      } else {
+        setLabelError({
+          ...labelError,
+          label: "Introduzca el nombre de la raza",
+        });
+      }
+    } else {
+      setLabelError({
+        ...labelError,
+        label: "Seleccione al menos un temeperamento",
+      });
+    }
+  };
   return (
     <div>
-      {console.log(breedMody)}
       <Nav />
       <div className="modify_breeds">
         <h1>Modify Breed</h1>
@@ -172,14 +233,14 @@ export const ModifyBreeds = () => {
               <input
                 type="text"
                 defaultValue={breed.height ? breed.height.split("-")[0] : ""}
-                name="heigth1"
+                name="height1"
                 onChange={handleInputChangeheigth}
               />
               <h3>-</h3>
               <input
                 type="text"
                 defaultValue={breed.height ? breed.height.split("-")[1] : ""}
-                name="heigth2"
+                name="height2"
                 onChange={handleInputChangeheigth}
               />
             </div>
@@ -221,6 +282,7 @@ export const ModifyBreeds = () => {
                 type="text"
                 name="image"
                 defaultValue={breed.image ? breed.image : ""}
+                onChange={handleInputChange}
               />
             </div>
           </div>
@@ -237,26 +299,50 @@ export const ModifyBreeds = () => {
             <div className="table_temperaments">
               {temperaments_search.map((temperament) => {
                 return (
-                  <React.Fragment key={temperament.id}>
-                    {breedMody.temperaments.map((select) => {
-                      return (
-                        <React.Fragment key={select}>
-                          {select === temperament.id && (
-                            <div className="label_table_sel">
-                              <label
-                                id={temperament.id}
-                                onClick={handleTemperamentDeseleccionar}
-                              >
-                                {temperament.name}
-                              </label>
-                            </div>
-                          )}
-                        </React.Fragment>
-                      );
-                    })}
+                  <React.Fragment key={temperament.id + 1}>
+                    {/*-------------------- arreglo_breed--------------------- */}
+                    {breed.temperaments &&
+                      breed.temperaments.map((select) => {
+                        return (
+                          <React.Fragment key={select.id + 1}>
+                            {select.id === temperament.id && (
+                              <div className="label_table_sel">
+                                <label
+                                  id={temperament.id}
+                                  onClick={handleTemperamentModyDeseleccionar}
+                                >
+                                  {temperament.name}
+                                </label>
+                              </div>
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
+                    {/*-------------------- arreglo_breedMody--------------------- */}
+                    {breedMody.temperaments &&
+                      breedMody.temperaments.map((select) => {
+                        return (
+                          <React.Fragment key={select + 1}>
+                            {select === temperament.id && (
+                              <div className="label_table_sel">
+                                <label
+                                  id={temperament.id}
+                                  onClick={handleTemperamentDeseleccionar}
+                                >
+                                  {temperament.name}
+                                </label>
+                              </div>
+                            )}
+                          </React.Fragment>
+                        );
+                      })}
                     {handleVerificar(temperament.id) === false && (
                       <div className="label_table">
-                        <label id={temperament.id} onClick={handleTemperament}>
+                        <label
+                          id={temperament.id}
+                          value={temperament}
+                          onClick={handleTemperament}
+                        >
                           {temperament.name}
                         </label>
                       </div>
@@ -266,6 +352,9 @@ export const ModifyBreeds = () => {
               })}
             </div>
           </div>
+        </div>
+        <div className="labelError">
+          <label>{labelError.label}</label>
         </div>
         <div className="group_btn">
           <button onClick={handleModifyBreed}>Modify</button>
