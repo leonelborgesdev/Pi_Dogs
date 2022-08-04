@@ -35,9 +35,7 @@ export const getBreedById = (idBreed) => {
         dispatch({
           type: GET_BREED_BY_ID,
           payload: date,
-          payloadLabelSelect: date.temperaments.map((temperament) => {
-            return temperament.id;
-          }),
+          payloadLabelSelect: date.temperaments,
         });
       }
     } catch (error) {

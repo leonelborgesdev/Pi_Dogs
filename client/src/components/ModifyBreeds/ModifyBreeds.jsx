@@ -15,21 +15,20 @@ export const ModifyBreeds = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { idBreed } = useParams();
-  useEffect(async () => {
-    await dispatch(getAllTemperaments());
+  useEffect(() => {
+    dispatch(getAllTemperaments());
   }, [dispatch]);
-  useEffect(async () => {
-    await dispatch(get_all_breeds());
+  useEffect(() => {
+    dispatch(get_all_breeds());
   }, [dispatch]);
-  useEffect(async () => {
+  useEffect(() => {
     console.log(idBreed);
-    await dispatch(getBreedById(idBreed));
+    dispatch(getBreedById(idBreed));
   }, [dispatch]);
   const { temperaments_search, breed } = useSelector((state) => state);
   const [labelError, setLabelError] = useState({ label: "" });
   // const [breedMody, setBreedMody] = useState(cargar_datos(breed));
   const [breedMody, setBreedMody] = useState({
-    id: "",
     name: "",
     height: "",
     weight: "",
@@ -37,7 +36,7 @@ export const ModifyBreeds = () => {
     image: "",
     temperaments: [],
   });
-
+  const [temperamentLength, setTemperamentLength] = useState({ tamaño: [] });
   function cargar_datos(breedId) {
     return {
       id: breedId.id,
@@ -55,7 +54,6 @@ export const ModifyBreeds = () => {
   }
   function cargar_datos_breedMody(name, value) {
     console.log(name, value);
-
     if (name === "height") {
       breedMody.height = value;
     }
@@ -74,7 +72,7 @@ export const ModifyBreeds = () => {
       return { height1: 0, height2: 0 };
     }
   };
-  const [height, setHeigth] = useState(InicialStateHeight(breedMody));
+  const [height, setHeigth] = useState(InicialStateHeight(breed));
   const InicialStateWeight = (Idbreed) => {
     if (Idbreed.weight && Idbreed.weight !== undefined) {
       const vec = Idbreed.weight.split("-");
@@ -83,7 +81,7 @@ export const ModifyBreeds = () => {
       return { weight1: 0, weight2: 0 };
     }
   };
-  const [weight, setWeigth] = useState(InicialStateWeight(breedMody));
+  const [weight, setWeigth] = useState(InicialStateWeight(breed));
   const InicialStateLifeSpan = (Idbreed) => {
     if (Idbreed.life_span && Idbreed.life_span !== undefined) {
       const vec = Idbreed.life_span.split(" ");
@@ -92,42 +90,41 @@ export const ModifyBreeds = () => {
       return { life_span1: 0, life_span2: 0 };
     }
   };
-  const [life_span, setLife_span] = useState(InicialStateLifeSpan(breedMody));
-  const handleTemperamentDeseleccionar = (e) => {
-    const { id } = e.target;
-    for (let i = 0; i < breedMody.temperaments.length; i++) {
-      if (breedMody.temperaments[i] === id) {
-        breedMody.temperaments.splice(i, 1);
-      }
+  const [life_span, setLife_span] = useState(InicialStateLifeSpan(breed));
+  const handleTemperamentDeseleccionar = (temperament) => {
+    if (temperamentLength.tamaño.length === 0) {
+      breed.temperaments.map((temperamento) => {
+        temperamentLength.tamaño.push(temperamento);
+      });
     }
-    dispatch(cargar_temperamentos(breedMody.temperaments));
-  };
-  const handleTemperamentModyDeseleccionar = (e) => {
-    const { id } = e.target;
     for (let i = 0; i < breed.temperaments.length; i++) {
-      console.log("idbreed:", breed.temperaments[i].id);
-      if (breed.temperaments[i].id === id) {
+      if (breed.temperaments[i].id === temperament.id) {
         breed.temperaments.splice(i, 1);
       }
     }
-    dispatch(cargar_temperamentos(breedMody.temperaments));
+    console.log("breed", breed, "temperamentLength", temperamentLength);
+    dispatch(cargar_temperamentos(breed.temperaments));
   };
   const handleVerificar = (id) => {
     let ban = false;
-    if (breedMody.temperaments.length > 0) {
-      breedMody.temperaments.map((select) => {
-        if (id === select) {
+    if (breed.temperaments) {
+      breed.temperaments.map((select) => {
+        if (id === select.id) {
           ban = true;
         }
       });
     }
     return ban;
   };
-  const handleTemperament = (e) => {
-    const { id, value } = e.target;
-    console.log("objeto name", value);
-    breedMody.temperaments.push(id);
-    dispatch(cargar_temperamentos(breedMody.temperaments));
+  const handleTemperament = (temperament) => {
+    if (temperamentLength.tamaño.length === 0) {
+      breed.temperaments.map((temperament) => {
+        temperamentLength.tamaño.push(temperament);
+      });
+    }
+    console.log("breed", breed, "temperamentLength", temperamentLength);
+    breed.temperaments.push(temperament);
+    dispatch(cargar_temperamentos(breed.temperaments));
   };
   const handleInputChangeSearch = (e) => {
     const { value } = e.target;
@@ -169,7 +166,7 @@ export const ModifyBreeds = () => {
       "life_span",
       life_span.life_span1 + " - " + life_span.life_span2 + " years"
     );
-    console.log(breedMody, breed);
+    console.log("breedMody", breedMody, "breed", breed);
     if (breedMody.temperaments.length > 0) {
       if (breedMody.name.length > 0 && breedMody.name !== undefined) {
         if (height.height1.length > 0 && height.height2.length > 0) {
@@ -232,7 +229,9 @@ export const ModifyBreeds = () => {
               <h3 className="input_item_h3">Heigth:</h3>
               <input
                 type="text"
-                defaultValue={breed.height ? breed.height.split("-")[0] : ""}
+                defaultValue={
+                  breed.height ? breed.height.split("-")[0].trim() : ""
+                }
                 name="height1"
                 onChange={handleInputChangeheigth}
               />
@@ -249,7 +248,9 @@ export const ModifyBreeds = () => {
               <input
                 type="text"
                 name="weigth1"
-                defaultValue={breed.weight ? breed.weight.split("-")[0] : ""}
+                defaultValue={
+                  breed.weight ? breed.weight.split("-")[0].trim() : ""
+                }
                 onChange={handleInputChangeweigth}
               />
               <h3>-</h3>
@@ -265,14 +266,18 @@ export const ModifyBreeds = () => {
               <input
                 type="text"
                 name="life_span1"
-                defaultValue={`${life_span.life_span1}`}
+                defaultValue={
+                  breed.life_span ? breed.life_span.split(" ")[0] : ""
+                }
                 onChange={handleInputChangelifespan}
               />
               <h3>-</h3>
               <input
                 type="text"
                 name="life_span2"
-                defaultValue={`${life_span.life_span2}`}
+                defaultValue={
+                  breed.life_span ? breed.life_span.split(" ")[2] : ""
+                }
                 onChange={handleInputChangelifespan}
               />
             </div>
@@ -308,26 +313,9 @@ export const ModifyBreeds = () => {
                             {select.id === temperament.id && (
                               <div className="label_table_sel">
                                 <label
-                                  id={temperament.id}
-                                  onClick={handleTemperamentModyDeseleccionar}
-                                >
-                                  {temperament.name}
-                                </label>
-                              </div>
-                            )}
-                          </React.Fragment>
-                        );
-                      })}
-                    {/*-------------------- arreglo_breedMody--------------------- */}
-                    {breedMody.temperaments &&
-                      breedMody.temperaments.map((select) => {
-                        return (
-                          <React.Fragment key={select + 1}>
-                            {select === temperament.id && (
-                              <div className="label_table_sel">
-                                <label
-                                  id={temperament.id}
-                                  onClick={handleTemperamentDeseleccionar}
+                                  onClick={() => {
+                                    handleTemperamentDeseleccionar(temperament);
+                                  }}
                                 >
                                   {temperament.name}
                                 </label>
@@ -340,8 +328,9 @@ export const ModifyBreeds = () => {
                       <div className="label_table">
                         <label
                           id={temperament.id}
-                          value={temperament}
-                          onClick={handleTemperament}
+                          onClick={() => {
+                            handleTemperament(temperament);
+                          }}
                         >
                           {temperament.name}
                         </label>

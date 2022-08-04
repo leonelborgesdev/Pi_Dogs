@@ -14,6 +14,7 @@ const initialState = {
   breeds: [],
   breedsTable: [],
   breed: {},
+  breedMod: {},
   temperaments: [],
   temperaments_search: [],
   labelSelect: [],
@@ -38,6 +39,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         breed: action.payload,
+        breedMod: action.payload,
         labelSelect: action.payloadLabelSelect,
       };
     case GET_ALL_TEMPERAMENTS:
