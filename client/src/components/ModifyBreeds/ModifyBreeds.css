@@ -18,6 +18,9 @@
     width: 100%;
     height: 100%;
 }
+.inputs_modify{
+    width: 50%;
+}
 .inputs_item{
     display: flex;
     flex-direction: row;
@@ -33,4 +36,21 @@
     display: flex;
     justify-content: flex-start;
     width: 120px;
+}
+
+@media screen and (max-width:850px) {
+    .form_modify_breed{
+        width: 100%;
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+    }
+    .inputs_modify{
+        width: 90%;
+    }
+    .panel_temperaments{
+        width: 90%;
+    }
+    .table_temperaments{
+        width: 100%;
+    }
 }

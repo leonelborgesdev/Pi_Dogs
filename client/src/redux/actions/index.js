@@ -168,9 +168,9 @@ export const addBreed = (breed) => {
     return response.json();
   };
 };
-export const modifyBreed = (breed) => {
+export const modifyBreed = (breed, idbreed) => {
   return async function () {
-    const response = await fetch(`${api}/breeds/${breed.id}`, {
+    const response = await fetch(`${api}/breeds/${idbreed}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

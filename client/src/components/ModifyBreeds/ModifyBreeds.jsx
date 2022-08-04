@@ -16,18 +16,13 @@ export const ModifyBreeds = () => {
   const navigate = useNavigate();
   const { idBreed } = useParams();
   useEffect(() => {
-    dispatch(getAllTemperaments());
-  }, [dispatch]);
-  useEffect(() => {
-    dispatch(get_all_breeds());
-  }, [dispatch]);
-  useEffect(() => {
     console.log(idBreed);
+    dispatch(getAllTemperaments());
+    dispatch(get_all_breeds());
     dispatch(getBreedById(idBreed));
-  }, [dispatch]);
+  }, []);
   const { temperaments_search, breed } = useSelector((state) => state);
   const [labelError, setLabelError] = useState({ label: "" });
-  // const [breedMody, setBreedMody] = useState(cargar_datos(breed));
   const [breedMody, setBreedMody] = useState({
     name: "",
     height: "",
@@ -37,7 +32,8 @@ export const ModifyBreeds = () => {
     temperaments: [],
   });
   const [temperamentLength, setTemperamentLength] = useState({ tamaño: [] });
-  function cargar_datos(breedId) {
+  function cargar_datos(breedInput, BreedTemp) {
+    console.log(breedInput, BreedTemp);
     return {
       id: breedId.id,
       name: breedId.name,
@@ -51,18 +47,6 @@ export const ModifyBreeds = () => {
           })
         : [],
     };
-  }
-  function cargar_datos_breedMody(name, value) {
-    console.log(name, value);
-    if (name === "height") {
-      breedMody.height = value;
-    }
-    if (name === "weight") {
-      breedMody.weight = value;
-    }
-    if (name === "life_span") {
-      breedMody.life_span = value;
-    }
   }
   const InicialStateHeight = (Idbreed) => {
     if (Idbreed.height && Idbreed.height !== undefined) {
@@ -159,6 +143,67 @@ export const ModifyBreeds = () => {
       [name]: value,
     });
   };
+  function cargar_datos_breedMody(name, value) {
+    console.log(name, value);
+    if (name === "height") {
+      breedMody.height = value;
+    }
+    if (name === "weight") {
+      breedMody.weight = value;
+    }
+    if (name === "life_span") {
+      breedMody.life_span = value;
+    }
+  }
+
+  function verificar_entero(h1, h2, w1, w2, ls1, ls2) {
+    if (Number.isInteger(h1 / 1)) {
+      if (Number.isInteger(h2 / 1)) {
+        if (Number.isInteger(w1 / 1)) {
+          if (Number.isInteger(w2 / 1)) {
+            if (Number.isInteger(ls1 / 1)) {
+              if (Number.isInteger(ls2 / 1)) {
+                return true;
+              } else {
+                setLabelError({
+                  ...labelError,
+                  label:
+                    "El Segundo parametro de los años de vida no es un numero entero",
+                });
+              }
+            } else {
+              setLabelError({
+                ...labelError,
+                label:
+                  "El Primer parametro de los años de vida no es un numero entero",
+              });
+            }
+          } else {
+            setLabelError({
+              ...labelError,
+              label: "El Segundo parametro del peso no es un numero entero",
+            });
+          }
+        } else {
+          setLabelError({
+            ...labelError,
+            label: "El Primer parametro del peso no es un numero entero",
+          });
+        }
+      } else {
+        setLabelError({
+          ...labelError,
+          label: "El Segundo parametro de la altura no es un numero entero",
+        });
+      }
+    } else {
+      setLabelError({
+        ...labelError,
+        label: "El Primer parametro de la altura no es un numero entero",
+      });
+    }
+    return false;
+  }
   const handleModifyBreed = () => {
     cargar_datos_breedMody("height", height.height1 + " - " + height.height2);
     cargar_datos_breedMody("weight", weight.weight1 + " - " + weight.weight2);
@@ -167,46 +212,55 @@ export const ModifyBreeds = () => {
       life_span.life_span1 + " - " + life_span.life_span2 + " years"
     );
     console.log("breedMody", breedMody, "breed", breed);
-    if (breedMody.temperaments.length > 0) {
-      if (breedMody.name.length > 0 && breedMody.name !== undefined) {
-        if (height.height1.length > 0 && height.height2.length > 0) {
-          if (weight.weight1.length > 0 && weight.weight2.length > 0) {
-            if (
-              life_span.life_span1.length > 0 &&
-              life_span.life_span2.length > 0
-            ) {
-              //dispatch(modifyBreed(breedMody));
-              // dispatch(cargar_temperamentos([]));
-              // navigate("/breeds");
+    if (
+      verificar_entero(
+        height.height1,
+        height.height2,
+        weight.weight1,
+        weight.weight2,
+        life_span.life_span1,
+        life_span.life_span2
+      )
+    ) {
+      if (breed.temperaments.length > 0) {
+        if (breedMody.name.length > 0 && breedMody.name !== undefined) {
+          if (height.height1.length > 0) {
+            if (weight.weight1.length > 0) {
+              if (life_span.life_span1.length > 0) {
+                cargar_datos(breedMody, breed);
+                //dispatch(modifyBreed(breedMody, idBreed));
+                // dispatch(cargar_temperamentos([]));
+                // navigate("/breeds");
+              } else {
+                setLabelError({
+                  ...labelError,
+                  label: "Introduzca el rango de años de vida",
+                });
+              }
             } else {
               setLabelError({
                 ...labelError,
-                label: "Introduzca el rango de años de vida",
+                label: "Introduzca el peso de la raza",
               });
             }
           } else {
             setLabelError({
               ...labelError,
-              label: "Introduzca el peso de la raza",
+              label: "Introduzca el tamaño de la raza",
             });
           }
         } else {
           setLabelError({
             ...labelError,
-            label: "Introduzca el tamaño de la raza",
+            label: "Introduzca el nombre de la raza",
           });
         }
       } else {
         setLabelError({
           ...labelError,
-          label: "Introduzca el nombre de la raza",
+          label: "Seleccione al menos un temeperamento",
         });
       }
-    } else {
-      setLabelError({
-        ...labelError,
-        label: "Seleccione al menos un temeperamento",
-      });
     }
   };
   return (
@@ -282,7 +336,7 @@ export const ModifyBreeds = () => {
               />
             </div>
             <div className="inputs_item">
-              <h3 className="input_item_h3">Url Image:</h3>
+              <h3 className="input_item_h3">Image:</h3>
               <input
                 type="text"
                 name="image"

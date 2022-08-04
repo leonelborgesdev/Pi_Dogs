@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./CardBreed.css";
 
 export const CardBreed = ({ breed }) => {
@@ -28,13 +28,6 @@ export const CardBreed = ({ breed }) => {
           }}
         >
           Detail
-        </button>
-        <button
-          onClick={() => {
-            navigate(`/modify/${breed.id}`);
-          }}
-        >
-          Modificar
         </button>
       </div>
     </div>
