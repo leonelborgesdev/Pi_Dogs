@@ -71,8 +71,8 @@ async function addBreed(req, res) {
 }
 async function modifyBreed(req, res) {
   const { idBreed } = req.params;
-  const { id, name, height, weight, life_span, image, temperaments } = req.body;
-  let breed = { id, name, height, weight, life_span, image, temperaments };
+  const { id, ...breed } = req.body;
+
   try {
     if (breed.name) {
       const verificar_nombre = await Dog.findOne({
@@ -87,7 +87,7 @@ async function modifyBreed(req, res) {
         });
       }
     }
-    const uptadebreed1 = await Dog.update(breed, {
+    await Dog.update(breed, {
       //modificando
       include: Temperament,
       where: {
@@ -99,7 +99,9 @@ async function modifyBreed(req, res) {
       where: { id: idBreed },
     });
     // await breedUpdate.removeTemperaments();
-    await breedUpdate.setTemperaments(breed.temperaments);
+    if (breed.temperaments) {
+      await breedUpdate.setTemperaments(breed.temperaments);
+    }
     return res.status(201).json({ ok: true, msg: `Modificacion exitosa` });
   } catch (error) {
     console.log(error);
