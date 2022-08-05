@@ -10,6 +10,7 @@ import {
   CHANGE_PAGE,
   GET_TEMPERAMENTS_BY_NAME,
   MESSAGE_CONFIRM,
+  RECOMEND,
 } from "./types";
 
 const api = "http://localhost:3001";
@@ -27,12 +28,14 @@ export const get_all_breeds = () => {
   };
 };
 
-export const getBreedById = (idBreed) => {
+export const getBreedById = (idBreed, breeds) => {
   return async function (dispatch) {
     const response = await fetch(`${api}/breeds/${idBreed}`);
     try {
       if (response) {
         const date = await response.json();
+        console.log(breeds, date);
+        console.log(breeds.filter((breed) => filterBreeds(breed, date)));
         dispatch({
           type: GET_BREED_BY_ID,
           payload: date,
@@ -164,6 +167,24 @@ export const messageConfirm = (message) => {
     });
   };
 };
+
+function filterBreeds(breedFilt, breedIdFilt) {
+  if (breedFilt.temperaments) {
+    for (let i = 0; i < breedFilt.temperaments.length; i++) {
+      if (breedIdFilt.temperaments) {
+        for (let j = 0; j < breedIdFilt.temperaments.length; j++) {
+          console.log(
+            breedFilt.temperaments[i].id + "===" + breedIdFilt.temperaments[j]
+          );
+          if (breedFilt.temperaments[i].id === breedIdFilt.temperaments[j]) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
+}
 export const addBreed = (breed) => {
   console.log(breed);
   return async function () {

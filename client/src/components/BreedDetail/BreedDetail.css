@@ -1,9 +1,13 @@
+.container_detail_breed{
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #156e85;
+}
 .breed_detail{
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
     margin: 1rem;
-    
 }
 .breed_descripcion{
     display: flex;
