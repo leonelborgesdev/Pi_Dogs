@@ -17,7 +17,6 @@ export const ModifyBreeds = () => {
   const navigate = useNavigate();
   const { idBreed } = useParams();
   useEffect(() => {
-    console.log(idBreed);
     dispatch(getAllTemperaments());
     dispatch(get_all_breeds());
     dispatch(getBreedById(idBreed));
@@ -57,12 +56,15 @@ export const ModifyBreeds = () => {
     return true;
   }
   function cargar_datos(breedInput, BreedTemp) {
-    console.log(breedInput, BreedTemp, temperamentLength);
     const breedReturn = {};
     //-----------------------temperaments: []-------------------------------
     if (temperamentLength.tamaño.length > 0) {
       if (BreedTemp.temperaments.length > temperamentLength.tamaño.length) {
-        breedReturn["temperaments"] = BreedTemp.temperaments;
+        breedReturn["temperaments"] = BreedTemp.temperaments.map(
+          (temperament) => {
+            return temperament.id;
+          }
+        );
       } else {
         if (
           verificar_temp_eliminados(
@@ -70,7 +72,11 @@ export const ModifyBreeds = () => {
             temperamentLength.tamaño
           ) === false
         ) {
-          breedReturn["temperaments"] = BreedTemp.temperaments;
+          breedReturn["temperaments"] = BreedTemp.temperaments.map(
+            (temperament) => {
+              return temperament.id;
+            }
+          );
         }
       }
     }
@@ -87,7 +93,6 @@ export const ModifyBreeds = () => {
       heightId1: BreedTemp.height.split("-")[0],
       heightId2: BreedTemp.height.split("-")[1].trim(),
     };
-    console.log("heightId", heightId, height);
     if (heightId.heightId2 === height.height2) {
       height.height2 = undefined;
     }
@@ -146,7 +151,6 @@ export const ModifyBreeds = () => {
       weightId1: BreedTemp.weight.split("-")[0],
       weightId2: BreedTemp.weight.split("-")[1].trim(),
     };
-    console.log("weightId", weightId, weight);
     if (weightId.weightId2 === weight.weight2) {
       weight.weight2 = undefined;
     }
@@ -210,7 +214,6 @@ export const ModifyBreeds = () => {
     if (life_spanId.life_spanId2 === life_span.life_span2) {
       life_span.life_span2 = undefined;
     }
-    console.log("life_spanId", life_spanId, life_span);
     if (
       life_span.life_span1.length > 0 &&
       life_spanId.life_spanId1 !== life_span.life_span1
@@ -278,6 +281,7 @@ export const ModifyBreeds = () => {
       breedReturn.image ||
       breedReturn.temperaments
     ) {
+      dispatch(modifyBreed(breedReturn, idBreed));
       return true;
     } else {
       setLabelError({
@@ -319,7 +323,6 @@ export const ModifyBreeds = () => {
         temperamentLength.tamaño.push(temperament);
       });
     }
-    console.log("breed", breed, "temperamentLength", temperamentLength);
     breed.temperaments.push(temperament);
     dispatch(cargar_temperamentos(breed.temperaments));
   };
@@ -333,7 +336,6 @@ export const ModifyBreeds = () => {
       ...height,
       [name]: value,
     });
-    console.log(height);
   };
   const handleInputChangeweigth = (e) => {
     const { name, value } = e.target;
