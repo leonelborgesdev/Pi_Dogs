@@ -5,6 +5,7 @@ import {
   cargar_temperamentos,
   addBreed,
   getTemperamentsByName,
+  messageConfirm,
 } from "../../redux/actions";
 import { v4 } from "uuid";
 import Nav from "../Nav/Nav";
@@ -178,7 +179,8 @@ const CreateBreeds = () => {
               ) {
                 dispatch(addBreed(breed));
                 dispatch(cargar_temperamentos([]));
-                navigate("/breeds");
+                dispatch(messageConfirm("Datos Modificados Exitosamente"));
+                navigate("/breed");
               } else {
                 setLabelError({
                   ...labelError,
