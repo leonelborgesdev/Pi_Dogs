@@ -19,7 +19,7 @@ export const ModifyBreeds = () => {
   useEffect(() => {
     dispatch(getAllTemperaments());
     dispatch(get_all_breeds());
-    dispatch(getBreedById(idBreed, []));
+    dispatch(getBreedById(idBreed, undefined));
   }, []);
   const { temperaments_search, breed } = useSelector((state) => state);
   const [labelError, setLabelError] = useState({ label: "" });

@@ -10,6 +10,7 @@ import {
   CHANGE_PAGE,
   GET_TEMPERAMENTS_BY_NAME,
   MESSAGE_CONFIRM,
+  RECOMEND,
 } from "../actions/types";
 const initialState = {
   breeds: [],
@@ -19,7 +20,7 @@ const initialState = {
   temperaments: [],
   temperaments_search: [],
   labelSelect: [],
-
+  breedsRecomend: [],
   lim_paginas: 8,
   pagina: 1,
   atras: 0,
@@ -42,6 +43,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         breed: action.payload,
         labelSelect: action.payloadLabelSelect,
+        breedsRecomend: action.payloadFilter,
       };
     case GET_ALL_TEMPERAMENTS:
       return {

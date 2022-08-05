@@ -30,16 +30,26 @@ export const get_all_breeds = () => {
 
 export const getBreedById = (idBreed, breeds) => {
   return async function (dispatch) {
+    let breedsFil = breeds;
     const response = await fetch(`${api}/breeds/${idBreed}`);
+    if (breeds !== undefined) {
+      if (breeds.length === 0) {
+        const response2 = await fetch(`${api}/breeds`);
+        if (response) {
+          breedsFil = await response2.json();
+        }
+      }
+    } else {
+      breedsFil = [];
+    }
     try {
       if (response) {
         const date = await response.json();
-        console.log(breeds, date);
-        console.log(breeds.filter((breed) => filterBreeds(breed, date)));
         dispatch({
           type: GET_BREED_BY_ID,
           payload: date,
           payloadLabelSelect: date.temperaments,
+          payloadFilter: breedsFil.filter((breed) => filterBreeds(breed, date)),
         });
       }
     } catch (error) {
@@ -48,6 +58,20 @@ export const getBreedById = (idBreed, breeds) => {
   };
 };
 
+function filterBreeds(breedFilt, breedIdFilt) {
+  if (breedFilt.temperaments) {
+    for (let i = 0; i < breedFilt.temperaments.length; i++) {
+      if (breedIdFilt.temperaments) {
+        for (let j = 0; j < breedIdFilt.temperaments.length; j++) {
+          if (breedFilt.temperaments[i].id === breedIdFilt.temperaments[j].id) {
+            return true;
+          }
+        }
+      }
+    }
+  }
+  return false;
+}
 export const getAllTemperaments = () => {
   return async function (dispatch) {
     const response = await fetch(`${api}/temperaments`);
@@ -111,6 +135,7 @@ export const getBreedByTemperament = (Breeds, Temperament) => {
     payload: filterBreeds,
   };
 };
+
 export const orderAlphabetic = (asc_desc, column, breeds) => {
   let orderBreeds;
   if (asc_desc) {
@@ -168,23 +193,6 @@ export const messageConfirm = (message) => {
   };
 };
 
-function filterBreeds(breedFilt, breedIdFilt) {
-  if (breedFilt.temperaments) {
-    for (let i = 0; i < breedFilt.temperaments.length; i++) {
-      if (breedIdFilt.temperaments) {
-        for (let j = 0; j < breedIdFilt.temperaments.length; j++) {
-          console.log(
-            breedFilt.temperaments[i].id + "===" + breedIdFilt.temperaments[j]
-          );
-          if (breedFilt.temperaments[i].id === breedIdFilt.temperaments[j]) {
-            return true;
-          }
-        }
-      }
-    }
-  }
-  return false;
-}
 export const addBreed = (breed) => {
   console.log(breed);
   return async function () {
