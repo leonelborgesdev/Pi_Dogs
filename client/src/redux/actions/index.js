@@ -9,6 +9,7 @@ import {
   GET_PAGES,
   CHANGE_PAGE,
   GET_TEMPERAMENTS_BY_NAME,
+  MESSAGE_CONFIRM,
 } from "./types";
 
 const api = "http://localhost:3001";
@@ -153,6 +154,14 @@ export const changePage = (Page, adelante, atras) => {
         payload2: atras - 1,
       });
     }
+  };
+};
+export const messageConfirm = (message) => {
+  return function (dispatch) {
+    dispatch({
+      type: MESSAGE_CONFIRM,
+      payload: message,
+    });
   };
 };
 export const addBreed = (breed) => {

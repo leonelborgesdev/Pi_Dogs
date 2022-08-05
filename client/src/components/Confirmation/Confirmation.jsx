@@ -14,7 +14,7 @@ export const Confirmation = () => {
             navigate("/breeds");
           }}
         >
-          Breeds
+          Aceptar
         </button>
       </div>
     </div>

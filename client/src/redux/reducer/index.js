@@ -9,15 +9,17 @@ import {
   GET_PAGES,
   CHANGE_PAGE,
   GET_TEMPERAMENTS_BY_NAME,
+  MESSAGE_CONFIRM,
 } from "../actions/types";
 const initialState = {
   breeds: [],
   breedsTable: [],
   breed: {},
-  breedMod: {},
+  message: "",
   temperaments: [],
   temperaments_search: [],
   labelSelect: [],
+
   lim_paginas: 8,
   pagina: 1,
   atras: 0,
@@ -39,7 +41,6 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         breed: action.payload,
-        breedMod: action.payload,
         labelSelect: action.payloadLabelSelect,
       };
     case GET_ALL_TEMPERAMENTS:
@@ -85,6 +86,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         adelante: action.payload,
         atras: action.payload2,
+      };
+    case MESSAGE_CONFIRM:
+      return {
+        ...state,
+        message: action.payload,
       };
     default:
       return {
