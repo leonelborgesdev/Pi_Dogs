@@ -12,3 +12,12 @@
     margin: 1rem;
     gap: 1.5rem;
 }
+
+@media screen and (max-width:800px) {
+    .breed_detail{
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
