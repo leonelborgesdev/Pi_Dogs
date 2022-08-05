@@ -7,6 +7,7 @@ import {
   getBreedById,
   getTemperamentsByName,
   get_all_breeds,
+  messageConfirm,
   modifyBreed,
 } from "../../redux/actions";
 import Nav from "../Nav/Nav";
@@ -357,6 +358,7 @@ export const ModifyBreeds = () => {
   };
   const handleModifyBreed = () => {
     if (cargar_datos(breedMody, breed)) {
+      dispatch(messageConfirm("Datos Modificados Exitosamente"));
       navigate("/breed");
     }
   };
