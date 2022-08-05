@@ -32,6 +32,14 @@ export const ModifyBreeds = () => {
     temperaments: [],
   });
   const [temperamentLength, setTemperamentLength] = useState({ tamaño: [] });
+  //---------------------------------rangos---------------------------------------
+  //intentar inicializando con undefined
+  const [height, setHeigth] = useState({ height1: "", height2: undefined });
+  const [weight, setWeigth] = useState({ weight1: "", weight2: undefined });
+  const [life_span, setLife_span] = useState({
+    life_span1: "",
+    life_span2: undefined,
+  });
   function verificar_temp_eliminados(BreedTemp, TempTamaño) {
     console.log("verificar tempe eliminados", BreedTemp, TempTamaño);
     for (let i = 0; i < TempTamaño.length; i++) {
@@ -76,66 +84,193 @@ export const ModifyBreeds = () => {
     //-----------------------heigth: ""--------------------------
     const heightId = {
       heightId1: BreedTemp.height.split("-")[0],
-      heightId2: BreedTemp.height.split("-")[1],
+      heightId2: BreedTemp.height.split("-")[1].trim(),
     };
+    console.log("heightId", heightId, height);
+    if (heightId.heightId2 === height.height2) {
+      height.height2 = undefined;
+    }
     if (height.height1.length > 0 && heightId.heightId1 !== height.height1) {
-      if (
-        height.height2.length > 0 &&
-        heightId.heightId2 !== height.height2 &&
-        heightId.heightId2 !== undefined
-      ) {
-        breedReturn["height"] = height.height1 + " - " + height.height2;
-      } else {
-        if (heightId.heightId2 !== undefined) {
-          breedReturn["height"] = height.height1 + " - " + heightId.heightId2;
+      if (Number.isInteger(height.height1 / 1)) {
+        if (height.height2 !== undefined) {
+          if (
+            height.height2.length > 0 &&
+            heightId.heightId2 !== height.height2 &&
+            heightId.heightId2 !== undefined
+          ) {
+            if (Number.isInteger(height.height2 / 1)) {
+              breedReturn["height"] = height.height1 + " - " + height.height2;
+            } else {
+              setLabelError({
+                ...labelError,
+                label:
+                  "El Segundo parametro de la altura no es un numero entero",
+              });
+              return false;
+            }
+          } else {
+            breedReturn["height"] = height.height1;
+          }
         } else {
-          breedReturn["height"] = height.height1;
+          breedReturn["height"] = height.height1 + " - " + heightId.heightId2;
         }
+      } else {
+        setLabelError({
+          ...labelError,
+          label: "El Primer parametro de la altura no es un numero entero",
+        });
+        return false;
       }
     } else {
-      if (
-        height.height2.length > 0 &&
-        heightId.heightId2 !== height.height2 &&
-        heightId.heightId1 !== undefined
-      ) {
-        breedReturn["height"] = heightId.heightId1 + " - " + height.height2;
+      if (height.height2 !== undefined) {
+        if (
+          height.height2.length > 0 &&
+          heightId.heightId2 !== height.height2 &&
+          heightId.heightId1 !== undefined
+        ) {
+          if (Number.isInteger(height.height2 / 1)) {
+            breedReturn["height"] = heightId.heightId1 + " - " + height.height2;
+          } else {
+            setLabelError({
+              ...labelError,
+              label: "El Segundo parametro de la altura no es un numero entero",
+            });
+            return false;
+          }
+        }
       }
     }
     //-----------------------weigth: ""--------------------------
     const weightId = {
       weightId1: BreedTemp.weight.split("-")[0],
-      weightId2: BreedTemp.weight.split("-")[1],
+      weightId2: BreedTemp.weight.split("-")[1].trim(),
     };
     console.log("weightId", weightId, weight);
+    if (weightId.weightId2 === weight.weight2) {
+      weight.weight2 = undefined;
+    }
     if (weight.weight1.length > 0 && weightId.weightId1 !== weight.weight1) {
-      if (
-        weight.weight2.length > 0 &&
-        weightId.weightId2 !== weight.weight2 &&
-        weightId.weightId2 !== undefined
-      ) {
-        breedReturn["weight"] = weight.weight1 + " - " + weight.weight2;
-      } else {
-        if (weightId.weightId2 !== undefined) {
-          breedReturn["weight"] = weight.weight1 + " - " + weightId.weightId2;
+      if (Number.isInteger(weight.weight1 / 1)) {
+        if (weight.weight2 !== undefined) {
+          if (
+            weight.weight2.length > 0 &&
+            weightId.weightId2 !== weight.weight2 &&
+            weightId.weightId2 !== undefined
+          ) {
+            if (Number.isInteger(weight.weight2 / 1)) {
+              breedReturn["weight"] = weight.weight1 + " - " + weight.weight2;
+            } else {
+              setLabelError({
+                ...labelError,
+                label: "El Segundo parametro de el peso no es un numero entero",
+              });
+              return false;
+            }
+          } else {
+            breedReturn["weight"] = weight.weight1;
+          }
         } else {
-          breedReturn["weight"] = weight.weight1;
+          breedReturn["weight"] = weight.weight1 + " - " + weightId.weightId2;
         }
+      } else {
+        setLabelError({
+          ...labelError,
+          label: "El Primer parametro de el peso no es un numero entero",
+        });
+        return false;
       }
     } else {
-      if (
-        weight.weight2.length > 0 &&
-        weightId.weightId2 !== weight.weight2 &&
-        weightId.weightId1 !== undefined
-      ) {
-        breedReturn["weight"] = weightId.weightId1 + " - " + weight.weight2;
+      if (weight.weight2 !== undefined) {
+        if (
+          weight.weight2.length > 0 &&
+          weightId.weightId2 !== weight.weight2 &&
+          weightId.weightId1 !== undefined
+        ) {
+          if (Number.isInteger(weight.weight2 / 1)) {
+            breedReturn["weight"] = weightId.weightId1 + " - " + weight.weight2;
+          } else {
+            setLabelError({
+              ...labelError,
+              label: "El Segundo parametro de el peso no es un numero entero",
+            });
+            return false;
+          }
+        }
+      }
+    }
+    //-----------------------life_span: ""--------------------------
+    const life_spanId = {
+      life_spanId1: BreedTemp.life_span.split("-")[0],
+      life_spanId2: BreedTemp.life_span
+        .split("-")[1]
+        .substring(0, BreedTemp.life_span.split("-")[1].length - 5)
+        .trim(),
+    };
+    if (life_spanId.life_spanId2 === life_span.life_span2) {
+      life_span.life_span2 = undefined;
+    }
+    console.log("life_spanId", life_spanId, life_span);
+    if (
+      life_span.life_span1.length > 0 &&
+      life_spanId.life_spanId1 !== life_span.life_span1
+    ) {
+      if (Number.isInteger(life_span.life_span1 / 1)) {
+        if (life_span.life_span2 !== undefined) {
+          if (
+            life_span.life_span2.length > 0 &&
+            life_spanId.life_spanId2 !== life_span.life_span2 &&
+            life_spanId.life_spanId2 !== undefined
+          ) {
+            if (Number.isInteger(life_span.life_span2 / 1)) {
+              breedReturn["life_span"] =
+                life_span.life_span1 + " - " + life_span.life_span2;
+            } else {
+              setLabelError({
+                ...labelError,
+                label:
+                  "El Segundo parametro de los años de vida no es un numero entero",
+              });
+              return false;
+            }
+          } else {
+            breedReturn["life_span"] = life_span.life_span1;
+          }
+        } else {
+          breedReturn["life_span"] =
+            life_span.life_span1 + " - " + life_spanId.life_spanId2;
+        }
+      } else {
+        setLabelError({
+          ...labelError,
+          label:
+            "El Primer parametro de los años de vida no es un numero entero",
+        });
+        return false;
+      }
+    } else {
+      if (life_span.life_span2 !== undefined) {
+        if (
+          life_span.life_span2.length > 0 &&
+          life_spanId.life_spanId2 !== life_span.life_span2 &&
+          life_spanId.life_spanId1 !== undefined
+        ) {
+          if (Number.isInteger(life_span.life_span2 / 1)) {
+            breedReturn["life_span"] =
+              life_spanId.life_spanId1 + " - " + life_span.life_span2;
+          } else {
+            setLabelError({
+              ...labelError,
+              label:
+                "El Segundo parametro de los años de vida no es un numero entero",
+            });
+            return false;
+          }
+        }
       }
     }
     console.log("breedReturn", breedReturn);
+    //return breedReturn
   }
-  //---------------------------------rangos---------------------------------------
-  const [height, setHeigth] = useState({ height1: "", height2: "" });
-  const [weight, setWeigth] = useState({ weight1: "", weight2: "" });
-  const [life_span, setLife_span] = useState({ life_spa1: "", life_spa2: "" });
   const handleTemperamentDeseleccionar = (temperament) => {
     if (temperamentLength.tamaño.length === 0) {
       breed.temperaments.map((temperamento) => {
@@ -254,55 +389,6 @@ export const ModifyBreeds = () => {
   }
   const handleModifyBreed = () => {
     cargar_datos(breedMody, breed);
-    if (
-      verificar_entero(
-        height.height1,
-        height.height2,
-        weight.weight1,
-        weight.weight2,
-        life_span.life_span1,
-        life_span.life_span2
-      )
-    ) {
-      if (breed.temperaments.length > 0) {
-        if (breedMody.name.length > 0 && breedMody.name !== undefined) {
-          if (height.height1.length > 0) {
-            if (weight.weight1.length > 0) {
-              if (life_span.life_span1.length > 0) {
-                //dispatch(modifyBreed(breedMody, idBreed));
-                // dispatch(cargar_temperamentos([]));
-                // navigate("/breeds");
-              } else {
-                setLabelError({
-                  ...labelError,
-                  label: "Introduzca el rango de años de vida",
-                });
-              }
-            } else {
-              setLabelError({
-                ...labelError,
-                label: "Introduzca el peso de la raza",
-              });
-            }
-          } else {
-            setLabelError({
-              ...labelError,
-              label: "Introduzca el tamaño de la raza",
-            });
-          }
-        } else {
-          setLabelError({
-            ...labelError,
-            label: "Introduzca el nombre de la raza",
-          });
-        }
-      } else {
-        setLabelError({
-          ...labelError,
-          label: "Seleccione al menos un temeperamento",
-        });
-      }
-    }
   };
   return (
     <div>
