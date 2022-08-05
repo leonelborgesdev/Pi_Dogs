@@ -269,6 +269,22 @@ export const ModifyBreeds = () => {
       }
     }
     console.log("breedReturn", breedReturn);
+    if (
+      breedReturn.name ||
+      breedReturn.height ||
+      breedReturn.weight ||
+      breedReturn.life_span ||
+      breedReturn.image ||
+      breedReturn.temperaments
+    ) {
+      return true;
+    } else {
+      setLabelError({
+        ...labelError,
+        label: "Debe Modificar almenos Un dato para continuar con el proceso",
+      });
+      return false;
+    }
     //return breedReturn
   }
   const handleTemperamentDeseleccionar = (temperament) => {
@@ -339,56 +355,10 @@ export const ModifyBreeds = () => {
       [name]: value,
     });
   };
-  function verificar_entero(h1, h2, w1, w2, ls1, ls2) {
-    if (Number.isInteger(h1 / 1)) {
-      if (Number.isInteger(h2 / 1)) {
-        if (Number.isInteger(w1 / 1)) {
-          if (Number.isInteger(w2 / 1)) {
-            if (Number.isInteger(ls1 / 1)) {
-              if (Number.isInteger(ls2 / 1)) {
-                return true;
-              } else {
-                setLabelError({
-                  ...labelError,
-                  label:
-                    "El Segundo parametro de los años de vida no es un numero entero",
-                });
-              }
-            } else {
-              setLabelError({
-                ...labelError,
-                label:
-                  "El Primer parametro de los años de vida no es un numero entero",
-              });
-            }
-          } else {
-            setLabelError({
-              ...labelError,
-              label: "El Segundo parametro del peso no es un numero entero",
-            });
-          }
-        } else {
-          setLabelError({
-            ...labelError,
-            label: "El Primer parametro del peso no es un numero entero",
-          });
-        }
-      } else {
-        setLabelError({
-          ...labelError,
-          label: "El Segundo parametro de la altura no es un numero entero",
-        });
-      }
-    } else {
-      setLabelError({
-        ...labelError,
-        label: "El Primer parametro de la altura no es un numero entero",
-      });
-    }
-    return false;
-  }
   const handleModifyBreed = () => {
-    cargar_datos(breedMody, breed);
+    if (cargar_datos(breedMody, breed)) {
+      navigate("/breed");
+    }
   };
   return (
     <div>

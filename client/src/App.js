@@ -5,6 +5,7 @@ import CreateBreeds from "./components/CreateBreeds/CreateBreeds";
 import { BreedDetail } from "./components/BreedDetail/BreedDetail";
 import { LandingPage } from "./components/LandingPage/LandingPage";
 import { ModifyBreeds } from "./components/ModifyBreeds/ModifyBreeds";
+import { Confirmation } from "./components/Confirmation/Confirmation";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path={"/createBreeds"} element={<CreateBreeds />} />
         <Route path={"/breedDetail/:idBreed"} element={<BreedDetail />} />
         <Route path={"/modify/:idBreed"} element={<ModifyBreeds />} />
+        <Route path={"/breed"} element={<Confirmation />} />
       </Routes>
     </div>
   );
