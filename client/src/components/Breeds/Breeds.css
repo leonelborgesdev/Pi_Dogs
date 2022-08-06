@@ -23,3 +23,15 @@
 .h1_razas{  
   background-color: #2193b0;
 }
+
+@media screen and (max-width:600px) {
+  .pet_breeds{
+      width: 150px;
+  }
+}
+
+@media (max-width: 440px) {  
+  .pet_breeds{
+      width: 100px;
+  }
+}

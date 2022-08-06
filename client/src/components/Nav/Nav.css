@@ -117,7 +117,7 @@ body{
     align-items: center;
     text-decoration: none;
     width: 50%;
-    padding: 10px;
+    padding-left: 15px;
     height: 100%;
     color: white;
 }
@@ -205,5 +205,29 @@ body{
         width: 90%;
         margin-left: auto;
         border-left: 1px solid #798499;
+    }
+}
+
+@media (max-width:500px){
+    .buton__container{
+        font-size: 12px;
+        padding-left: 5px;
+    }
+    .menu_seccion_busqueda{
+        margin: 0px;
+    }
+    .text_buscar_nombre{
+        width: 100px;
+    }
+}
+@media (max-width: 350px) {    
+    .menu__container{
+        margin: 0px;
+    }
+    .buton__container{
+        padding-left: 2px;
+    }
+    .menu_busqueda{
+        margin: 0px;
     }
 }

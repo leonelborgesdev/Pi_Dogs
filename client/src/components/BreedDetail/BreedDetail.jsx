@@ -29,16 +29,17 @@ export const BreedDetail = () => {
       <Nav />
       {console.log(breedsRecomend)}
       <div className="container_detail_breed">
-        <h1>Breed Detail</h1>
+        <h1 className="detail_titulo">Breed Detail</h1>
         {breed ? (
           <div className="breed_detail">
-            {breed.image && <img src={breed.image} width="500px" />}
+            <img className="img_detail" src={breed.image} />
+
             <div className="breed_descripcion">
-              <h3>Name: {breed.name}</h3>
-              <h3>Height: {breed.height}</h3>
-              <h3>Weight: {breed.weight}</h3>
-              <h3>Life Span: {breed.life_span}</h3>
-              <h3>
+              <h3 className="text_descripcion">Name: {breed.name}</h3>
+              <h3 className="text_descripcion">Height: {breed.height}</h3>
+              <h3 className="text_descripcion">Weight: {breed.weight}</h3>
+              <h3 className="text_descripcion">Life Span: {breed.life_span}</h3>
+              <h3 className="text_descripcion">
                 Temperaments:
                 {breed.temperaments?.map((temperament) => {
                   return (

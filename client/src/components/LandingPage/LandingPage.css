@@ -47,7 +47,8 @@
 }
 .textos .textos_h1{
     font-size: 85px;
-    color: #1e89a3;;
+    /* color: #010114; */
+    color: #1f6aa7;
     animation: moverDerecha 1s ease-in;
 }
 .textos .textos_h2{

@@ -52,3 +52,19 @@
     width: 33px;
     height: 33px;
 }
+
+
+@media (max-width:500px){
+    .buton_row_pag{
+        font-size: 12px;
+        padding: 5px;
+    }
+    .buton_pag{
+        width: 28px;
+        height: 28px;
+    }
+    .buton_pag_select{
+        width: 28px;
+        height: 28px;
+    }
+}

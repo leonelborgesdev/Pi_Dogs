@@ -7,17 +7,17 @@ export const CardBreed = ({ breed }) => {
   return (
     <div className="card">
       <div className="card_img">{breed.image && <img src={breed.image} />}</div>
-      <h1>{breed.name}</h1>
+      <h1 className="card_titulo">{breed.name}</h1>
       <div className="card_temperaments">
-        <h3>Weight(kg): {breed.weight}</h3>
-        <h3>
+        <h3 className="card_texto">Weight(kg): {breed.weight}</h3>
+        <h3 className="card_texto">
           Temperaments:
           {breed.temperaments.length > 0 ? (
             breed.temperaments.map((temperament) => {
               return <span key={temperament.id}>[{temperament.name}]</span>;
             })
           ) : (
-            <span> [No se encontro Temperamentos]</span>
+            <span className="card_texto"> [No se encontro Temperamentos]</span>
           )}
         </h3>
       </div>
@@ -25,6 +25,7 @@ export const CardBreed = ({ breed }) => {
         <button
           onClick={() => {
             navigate(`/breedDetail/${breed.id}`);
+            window.location.reload();
           }}
         >
           Detail

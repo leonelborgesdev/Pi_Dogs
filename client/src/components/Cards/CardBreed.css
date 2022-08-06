@@ -51,3 +51,20 @@
     border: 1px solid #156e85;
     background-color: #2193b0;
   }
+  
+@media (max-width: 420px) {
+    
+  .card{
+      width: 290px;
+      height: 480px;
+  }
+  .card_img{
+    width: 250px;
+  }
+  .card_titulo{
+    font-size: 28px;
+  }
+  .card_texto{
+    font-size: 16px;
+  }
+}
