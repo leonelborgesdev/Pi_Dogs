@@ -80,9 +80,22 @@ export default function Nav() {
       ...ordenar,
       ["name"]: column,
     });
-    dispatch(orderAlphabetic(asc_des, column, [...breeds]));
+    console.log(column);
+    if (column === "weight") {
+      dispatch(
+        orderAlphabetic(asc_des, "peso", ordenamientoNumerico([...breeds]))
+      );
+    } else {
+      dispatch(orderAlphabetic(asc_des, column, [...breeds]));
+    }
     navigate("/breeds");
   };
+  function ordenamientoNumerico(breedsOrdenar) {
+    return breedsOrdenar.map((breedOrd) => {
+      breedOrd["peso"] = parseInt(breedOrd.weight.split("-")[0].trim(), 10);
+      return breedOrd;
+    });
+  }
   return (
     <div className="Navbar">
       <nav className="menu">

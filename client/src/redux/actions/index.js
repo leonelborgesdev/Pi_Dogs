@@ -138,8 +138,34 @@ export const getBreedByTemperament = (Breeds, Temperament) => {
     payload: filterBreeds,
   };
 };
-
 export const orderAlphabetic = (asc_desc, column, breeds) => {
+  let orderBreeds;
+  if (asc_desc) {
+    orderBreeds = breeds.sort((a, b) => {
+      if (a[column] < b[column]) return -1;
+      if (a[column] < b[column]) return 1;
+      return 0;
+    });
+  } else {
+    orderBreeds = breeds.sort((a, b) => {
+      if (a[column] > b[column]) return -1;
+      if (a[column] > b[column]) return 1;
+      return 0;
+    });
+  }
+  if (column === "peso") {
+    orderBreeds = orderBreeds.map((breed) => {
+      delete breed.peso;
+      return breed;
+    });
+  }
+  console.log("orderBreeds", orderBreeds);
+  return {
+    type: ORDENAMIENTO_ALFABETICO,
+    payload: orderBreeds,
+  };
+};
+export const orderAlphabeticNumbers = (asc_desc, column, breeds) => {
   let orderBreeds;
   if (asc_desc) {
     orderBreeds = breeds.sort((a, b) => {
