@@ -69,7 +69,7 @@ export const BreedDetail = () => {
           <span>No se encontro la raza</span>
         )}
       </div>
-
+      <h3 className="text_descripcion">Matches Temperaments:</h3>
       <div className="cards">
         {breedsRecomend.map((breed) => {
           return (

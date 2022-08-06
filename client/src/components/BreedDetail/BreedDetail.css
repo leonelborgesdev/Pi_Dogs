@@ -1,4 +1,4 @@
- .container_detail_breed{
+.container_detail_breed{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,12 +10,11 @@
 }
 .img_detail{
     border-radius: 10px;
-    width: 550px;
+    width: 700px;
 }
 .breed_detail{
     display: flex;
     flex-direction: row;
-    height: 95%;
     gap: 1.5rem;
     margin: 20px;
 }
@@ -27,13 +26,16 @@
     gap: 1.5rem;
 }
 
-@media screen and (max-width:900px) {
+@media screen and (max-width:1000px) {
     .breed_detail{
         width: 100%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         margin: 0px;
+    }
+    .img_detail{
+        width: 500px;
     }
 }
 
@@ -46,7 +48,7 @@
     }
     .breed_detail{
         width: 400px;
-        height: 500px;
+        height: 100%;
         margin: 10px;
         gap: 1rem;
     }

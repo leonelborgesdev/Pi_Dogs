@@ -59,6 +59,9 @@ export const getBreedById = (idBreed, breeds) => {
 };
 
 function filterBreeds(breedFilt, breedIdFilt) {
+  if (breedFilt.id === breedIdFilt.id) {
+    return false;
+  }
   if (breedFilt.temperaments) {
     for (let i = 0; i < breedFilt.temperaments.length; i++) {
       if (breedIdFilt.temperaments) {
