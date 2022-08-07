@@ -64,7 +64,7 @@ export const BreedDetail = () => {
                 </button>
                 <button
                   onClick={() => {
-                    navigate.back();
+                    navigate(`/breeds`);
                   }}
                 >
                   Volver
