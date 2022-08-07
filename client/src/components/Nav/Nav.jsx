@@ -91,7 +91,12 @@ export default function Nav() {
   };
   function ordenamientoNumerico(breedsOrdenar) {
     return breedsOrdenar.map((breedOrd) => {
-      breedOrd["peso"] = parseInt(breedOrd.weight.split("-")[0].trim(), 10);
+      //console.log("peso", breedOrd.weight.split("-")[0].trim());
+      if (breedOrd.weight.split("-")[0].trim() === "NaN") {
+        breedOrd["peso"] = 1000;
+      } else {
+        breedOrd["peso"] = parseInt(breedOrd.weight.split("-")[0].trim(), 10);
+      }
       return breedOrd;
     });
   }
