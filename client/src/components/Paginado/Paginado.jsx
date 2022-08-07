@@ -12,11 +12,11 @@ export const Paginado = () => {
   if (breeds.length > lim_paginas) {
     const NumBreeds = Math.round(breeds.length);
     const numero = NumBreeds / lim_paginas;
-    if (numero - Math.floor(numero === 0)) {
-      paginas = parseInt(numero, 10) + 1;
+    if (Number.isInteger(numero / 1)) {
+      paginas = parseInt(numero, 10);
     } else {
-      let val = numero.toString().split("");
-      paginas = parseInt(val[0], 10) + 2;
+      let val = numero.toString().split(".");
+      paginas = parseInt(val[0], 10) + 1;
     }
   }
   const array = [];

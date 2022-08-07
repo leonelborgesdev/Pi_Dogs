@@ -222,7 +222,6 @@ export const messageConfirm = (message) => {
 };
 
 export const addBreed = (breed) => {
-  console.log(breed);
   return async function () {
     const response = await fetch(`${api}/breeds`, {
       method: "POST",
