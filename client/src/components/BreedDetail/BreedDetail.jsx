@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Nav from "../Nav/Nav";
 import {
-  filter_breeds_temperamend_breedId,
   getAllTemperaments,
   getBreedById,
   get_all_breeds,
@@ -27,7 +26,6 @@ export const BreedDetail = () => {
   return (
     <div>
       <Nav />
-      {console.log(breedsRecomend)}
       <div className="container_detail_breed">
         <h1 className="detail_titulo">Breed Detail</h1>
         {breed ? (
