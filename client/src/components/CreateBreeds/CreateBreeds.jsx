@@ -338,6 +338,13 @@ const CreateBreeds = () => {
         </div>
         <div className="group_btn">
           <button onClick={handleCreateBreed}>Create</button>
+          <button
+            onClick={() => {
+              navigate(`/breeds`);
+            }}
+          >
+            Volver
+          </button>
         </div>
       </div>
       <div className="relleno"></div>
