@@ -29,6 +29,11 @@ export const Paginado = () => {
   };
   const handleChangePage = (e) => {
     const { id } = e.target;
+    if (id === "atras") {
+      dispatch(getPages(pagina - 1, lim_paginas));
+    } else {
+      dispatch(getPages(pagina + 1, lim_paginas));
+    }
     dispatch(changePage(id, adelante, atras));
   };
   const handleChangePageUlt = (e) => {
