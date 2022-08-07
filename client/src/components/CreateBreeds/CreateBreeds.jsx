@@ -179,7 +179,7 @@ const CreateBreeds = () => {
               ) {
                 dispatch(addBreed(breed));
                 dispatch(cargar_temperamentos([]));
-                dispatch(messageConfirm("Datos Modificados Exitosamente"));
+                dispatch(messageConfirm("Ha Creado una nueva raza de perro"));
                 navigate("/breed");
               } else {
                 setLabelError({
