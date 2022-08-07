@@ -80,7 +80,6 @@ export default function Nav() {
       ...ordenar,
       ["name"]: column,
     });
-    console.log(column);
     if (column === "weight") {
       dispatch(
         orderAlphabetic(asc_des, "peso", ordenamientoNumerico([...breeds]))

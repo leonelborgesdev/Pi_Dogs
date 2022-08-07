@@ -117,7 +117,7 @@ body{
     align-items: center;
     text-decoration: none;
     width: 50%;
-    padding-left: 15px;
+    padding-right: 15px;
     height: 100%;
     color: white;
 }
@@ -211,7 +211,7 @@ body{
 @media (max-width:500px){
     .buton__container{
         font-size: 12px;
-        padding-left: 5px;
+        padding-right: 5px;
     }
     .menu_seccion_busqueda{
         margin: 0px;
@@ -225,7 +225,7 @@ body{
         margin: 0px;
     }
     .buton__container{
-        padding-left: 2px;
+        padding-right: 2px;
     }
     .menu_busqueda{
         margin: 0px;

@@ -159,7 +159,6 @@ export const orderAlphabetic = (asc_desc, column, breeds) => {
       return breed;
     });
   }
-  console.log("orderBreeds", orderBreeds);
   return {
     type: ORDENAMIENTO_ALFABETICO,
     payload: orderBreeds,
