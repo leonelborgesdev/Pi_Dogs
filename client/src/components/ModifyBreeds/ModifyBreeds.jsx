@@ -502,6 +502,13 @@ export const ModifyBreeds = () => {
         </div>
         <div className="group_btn">
           <button onClick={handleModifyBreed}>Modify</button>
+          <button
+            onClick={() => {
+              navigate(`/breeds`);
+            }}
+          >
+            Volver
+          </button>
         </div>
       </div>
     </div>
