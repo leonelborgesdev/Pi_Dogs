@@ -62,6 +62,13 @@ export const BreedDetail = () => {
                 >
                   Modificar
                 </button>
+                <button
+                  onClick={() => {
+                    navigate.back();
+                  }}
+                >
+                  Volver
+                </button>
               </div>
             </div>
           </div>
