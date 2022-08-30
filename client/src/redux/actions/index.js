@@ -10,7 +10,6 @@ import {
   CHANGE_PAGE,
   GET_TEMPERAMENTS_BY_NAME,
   MESSAGE_CONFIRM,
-  RECOMEND,
 } from "./types";
 
 const api = "http://localhost:3001";

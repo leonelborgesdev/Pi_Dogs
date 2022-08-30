@@ -296,6 +296,15 @@ const CreateBreeds = () => {
                 name="name"
                 onChange={handleInputChangeSearch}
               />
+              <div className="group_btn">
+                <button
+                  onClick={() => {
+                    navigate(`/createTemperament`);
+                  }}
+                >
+                  AddTemperament
+                </button>
+              </div>
             </div>
             <div className="table_temperaments">
               {temperaments_search.map((temperament) => {

@@ -215,9 +215,9 @@ export default function Nav() {
             </li>
 
             <li className="menu__item">
-              <a href="/createBreeds" className="menu__link">
+              <Link to={"/createBreeds"} className="menu__link">
                 Create Breeds
-              </a>
+              </Link>
             </li>
           </ul>
 

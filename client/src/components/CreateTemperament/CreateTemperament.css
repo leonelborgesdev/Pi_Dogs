@@ -1,0 +1,65 @@
+.create_temperaments{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    background-color: #156e85;
+    margin: 10px;
+    padding: 1rem;
+}
+.form_temperament{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 15px;
+    background: #156e85;
+}
+.form_text {
+    position: relative;
+    width: 100%;
+    margin: 10px;
+}
+.form_text input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background: #156e85;
+    outline: none;
+    color: #00dfc4;
+    border: 1px solid #00dfc4;
+    font-size: 1em;
+    transition: 0.5;
+}
+.form_text span{
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 10px;
+    pointer-events: none;
+    color: #00dfc4;
+    font-size: 1em;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+/* .inputBox input:valid ~ span,
+.inputBox input:focus ~ span{
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.70em;
+    padding: 0 10px;
+    letter-spacing: 0.2em;
+}*/
+
+.form_text input:valid ~ span,
+.form_text input:focus ~ span{
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.70em;
+    padding: 0 10px;
+    letter-spacing: 0.2em;
+    background: #156e85;
+    color: #00dfc4;
+    border-left: 1px solid #00dfc4;
+    border-right: 1px solid #00dfc4;
+}
