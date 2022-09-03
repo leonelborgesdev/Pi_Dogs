@@ -221,7 +221,7 @@ export const messageConfirm = (message) => {
 };
 
 export const addBreed = (breed) => {
-  return async function () {
+  return async function (dispatch) {
     const response = await fetch(`${api}/breeds`, {
       method: "POST",
       headers: {
@@ -229,7 +229,14 @@ export const addBreed = (breed) => {
       },
       body: JSON.stringify(breed),
     });
-    return response.json();
+    if (response) {
+      const data = await response.json();
+      console.log(data);
+      dispatch({
+        type: "",
+        payload: data,
+      });
+    }
   };
 };
 export const modifyBreed = (breed, idbreed) => {
@@ -241,6 +248,8 @@ export const modifyBreed = (breed, idbreed) => {
       },
       body: JSON.stringify(breed),
     });
+    const data = await response.json();
+    console.log(response, data);
     return response.json();
   };
 };

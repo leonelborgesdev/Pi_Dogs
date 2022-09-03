@@ -58,8 +58,9 @@
     font-size: 0.70em;
     padding: 0 10px;
     letter-spacing: 0.2em;
-    background: #156e85;
-    color: #00dfc4;
+    background: #00dfc4;
+    /* 0c192c */
+    color: #0c192c;
     border-left: 1px solid #00dfc4;
     border-right: 1px solid #00dfc4;
 }

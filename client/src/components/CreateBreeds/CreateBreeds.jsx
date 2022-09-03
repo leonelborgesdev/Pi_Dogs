@@ -6,6 +6,7 @@ import {
   addBreed,
   getTemperamentsByName,
   messageConfirm,
+  get_all_breeds,
 } from "../../redux/actions";
 import { v4 } from "uuid";
 import Nav from "../Nav/Nav";
@@ -16,10 +17,11 @@ const CreateBreeds = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
+    dispatch(get_all_breeds());
     dispatch(getAllTemperaments());
   }, []);
   //   const { temperaments, labelSelect } = useSelector((state) => state);
-  const { temperaments_search } = useSelector((state) => state);
+  const { temperaments_search, breeds } = useSelector((state) => state);
   const [labelError, setLabelError] = useState({ label: "" });
   const [breed, setBreed] = useState({
     id: v4(),
@@ -153,6 +155,10 @@ const CreateBreeds = () => {
     return false;
   }
   const handleCreateBreed = () => {
+    const breeds_coincidence_name = breeds.filter(
+      (br) => br.name === breed.name
+    );
+    console.log(breeds_coincidence_name);
     cargar_datos("heigth", height.height1 + " - " + height.height2);
     cargar_datos("weight", weight.weight1 + " - " + weight.weight2);
     cargar_datos(
@@ -177,10 +183,17 @@ const CreateBreeds = () => {
                 life_span.life_span1.length > 0 &&
                 life_span.life_span2.length > 0
               ) {
-                dispatch(addBreed(breed));
-                dispatch(cargar_temperamentos([]));
-                dispatch(messageConfirm("Ha Creado una nueva raza de perro"));
-                navigate("/breed");
+                if (breeds_coincidence_name.length === 0) {
+                  dispatch(addBreed(breed));
+                  dispatch(cargar_temperamentos([]));
+                  // dispatch(messageConfirm("Ha Creado una nueva raza de perro"));
+                  // navigate("/breed");
+                } else {
+                  setLabelError({
+                    ...labelError,
+                    label: `Ya existe una raza con el nombre '${breed.name}'`,
+                  });
+                }
               } else {
                 setLabelError({
                   ...labelError,
@@ -221,81 +234,102 @@ const CreateBreeds = () => {
         <div className="form_create">
           <div className="container_create">
             <div className="create_item">
-              <h3 className="textCreate">Nombre:</h3>
-              <input
-                type={"text"}
-                placeholder="Name..."
-                name="name"
-                onChange={handleInputChange}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="name"
+                  onChange={handleInputChange}
+                />
+                <span>Name</span>
+              </div>
             </div>
             <div className="create_item">
-              <h3 className="textCreate">Altura:</h3>
-              <input
-                type={"text"}
-                placeholder="64"
-                name="height1"
-                onChange={handleInputChangeheigth}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="height1"
+                  onChange={handleInputChangeheigth}
+                />
+                <span>Height</span>
+              </div>
               <h3 className="textCreate">-</h3>
-              <input
-                type={"text"}
-                placeholder="69"
-                name="height2"
-                onChange={handleInputChangeheigth}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="height2"
+                  onChange={handleInputChangeheigth}
+                />
+                <span>Height</span>
+              </div>
             </div>
             <div className="create_item">
-              <h3 className="textCreate">Peso:</h3>
-              <input
-                type={"text"}
-                placeholder="23"
-                name="weight1"
-                onChange={handleInputChangeweigth}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="weight1"
+                  onChange={handleInputChangeweigth}
+                />
+                <span>weight</span>
+              </div>
               <h3 className="textCreate">-</h3>
-              <input
-                type={"text"}
-                placeholder="27"
-                name="weight2"
-                onChange={handleInputChangeweigth}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="weight2"
+                  onChange={handleInputChangeweigth}
+                />
+                <span>weight</span>
+              </div>
             </div>
             <div className="create_item">
-              <h3 className="textCreate">Años:</h3>
-              <input
-                type={"text"}
-                placeholder="10"
-                name="life_span1"
-                onChange={handleInputChangelifespan}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="life_span1"
+                  onChange={handleInputChangelifespan}
+                />
+                <span>Life Span</span>
+              </div>
               <h3 className="textCreate">-</h3>
-              <input
-                type={"text"}
-                placeholder="13"
-                name="life_span2"
-                onChange={handleInputChangelifespan}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="life_span2"
+                  onChange={handleInputChangelifespan}
+                />
+                <span>Life Span</span>
+              </div>
             </div>
             <div className="create_item">
-              <h3 className="textCreate">Imagen:</h3>
-              <input
-                type={"text"}
-                placeholder="Url image..."
-                name="image"
-                onChange={handleInputChange}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="image"
+                  onChange={handleInputChange}
+                />
+                <span>Imagen</span>
+              </div>
             </div>
           </div>
           <div className="panel_temperaments">
             <div className="create_item">
-              <h3 className="textCreate">Nombre:</h3>
-              <input
-                type={"text"}
-                placeholder="Temperament..."
-                name="name"
-                onChange={handleInputChangeSearch}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="name"
+                  onChange={handleInputChangeSearch}
+                />
+                <span>Nombre</span>
+              </div>
               <div className="group_btn">
                 <button
                   onClick={() => {

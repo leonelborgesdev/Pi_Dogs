@@ -58,10 +58,19 @@ async function getDogById(req, res) {
 async function addBreed(req, res) {
   const { id, name, height, weight, life_span, image, temperaments } = req.body;
   let breed = { id, name, height, weight, life_span, image };
+  const breed_coincidence_name = await Dog.findAll({
+    where: { name: breed.name },
+  });
+  console.log(breed.name, breed_coincidence_name.length);
+  if (breed_coincidence_name.length > 0) {
+    return res.json({
+      ok: false,
+      msg: `Ya existe una raza con el nombre ${breed.name}`,
+    });
+  }
   if (breed.name) {
     const breed1 = await Dog.create(breed);
     await breed1.setTemperaments(temperaments);
-    console.log(breed1);
     return res.status(200).json(breed);
   } else {
     return res
