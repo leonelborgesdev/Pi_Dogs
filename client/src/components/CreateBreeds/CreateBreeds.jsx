@@ -186,8 +186,8 @@ const CreateBreeds = () => {
                 if (breeds_coincidence_name.length === 0) {
                   dispatch(addBreed(breed));
                   dispatch(cargar_temperamentos([]));
-                  // dispatch(messageConfirm("Ha Creado una nueva raza de perro"));
-                  // navigate("/breed");
+                  dispatch(messageConfirm("Ha Creado una nueva raza de perro"));
+                  navigate("/breed");
                 } else {
                   setLabelError({
                     ...labelError,
@@ -320,7 +320,7 @@ const CreateBreeds = () => {
             </div>
           </div>
           <div className="panel_temperaments">
-            <div className="create_item">
+            <div className="container_search_create">
               <div className="form_text">
                 <input
                   type="text"
@@ -328,7 +328,7 @@ const CreateBreeds = () => {
                   name="name"
                   onChange={handleInputChangeSearch}
                 />
-                <span>Nombre</span>
+                <span>Name</span>
               </div>
               <div className="group_btn">
                 <button

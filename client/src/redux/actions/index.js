@@ -219,7 +219,26 @@ export const messageConfirm = (message) => {
     });
   };
 };
-
+export const addTemperament = (temperament) => {
+  return async function (dispatch) {
+    console.log(temperament);
+    const response = await fetch(`${api}/temperaments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(temperament),
+    });
+    if (response) {
+      const data = await response.json();
+      console.log("respuesta", data);
+      dispatch({
+        type: "",
+        payload: data,
+      });
+    }
+  };
+};
 export const addBreed = (breed) => {
   return async function (dispatch) {
     const response = await fetch(`${api}/breeds`, {
@@ -231,7 +250,6 @@ export const addBreed = (breed) => {
     });
     if (response) {
       const data = await response.json();
-      console.log(data);
       dispatch({
         type: "",
         payload: data,

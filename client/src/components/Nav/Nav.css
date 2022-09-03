@@ -101,7 +101,6 @@ body{
     transform: translateY(100%);
     background: #156e85;
     height: 140px;
-    /* position: sticky; */
     overflow: auto;
 }
 

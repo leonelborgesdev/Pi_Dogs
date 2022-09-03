@@ -29,7 +29,7 @@
     background: #156e85;
     outline: none;
     color: #00dfc4;
-    border: 1px solid #00dfc4;
+    border: 1px solid #0c4553;
     font-size: 1em;
     transition: 0.5;
 }
@@ -39,7 +39,7 @@
     top: 0;
     padding: 10px;
     pointer-events: none;
-    color: #00dfc4;
+    color: #bee2de;
     font-size: 1em;
     text-transform: uppercase;
     transition: 0.5s;
@@ -58,9 +58,8 @@
     font-size: 0.70em;
     padding: 0 10px;
     letter-spacing: 0.2em;
-    background: #00dfc4;
-    /* 0c192c */
-    color: #0c192c;
-    border-left: 1px solid #00dfc4;
-    border-right: 1px solid #00dfc4;
+    background: #0c4553;
+    color: #00dfc4;
+    border-left: 1px solid #0c4553;
+    border-right: 1px solid #0c4553;
 }
