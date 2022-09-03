@@ -26,6 +26,7 @@ body{
     justify-content: center;
     align-items: center;    
     height: 100%;
+    width: 30%;
     margin: 5px;
 }
 .Navbar{
@@ -140,6 +141,9 @@ body{
 }
 
 @media (max-width:1060px){
+    .menu_seccion_busqueda{
+        width: 50%;
+    }
     .menu__hamburguer{
         display: flex;
     }
@@ -196,8 +200,6 @@ body{
         transform: translateY(0);
         height: 0;
         transition: height .3s;
-        /* height: 250px;
-        overflow: auto; */
     }
 
     .menu__link--inside{
@@ -208,6 +210,17 @@ body{
 }
 
 @media (max-width:500px){
+    .menu_seccion_busqueda{
+        width: 100%;
+    }
+    .menu_seccion_busqueda .form_text span{
+        padding: 11px;
+        font-size: 12px;
+    }
+    .menu_seccion_busqueda .form_text {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
     .buton__container{
         font-size: 12px;
         padding-right: 5px;

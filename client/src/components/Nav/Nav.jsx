@@ -119,12 +119,20 @@ export default function Nav() {
             </Link>
           </div>
           <div className="menu_seccion_busqueda">
-            <p className="buton__container">Nombre</p>
+            <div className="form_text">
+              <input
+                type="text"
+                required="required"
+                onChange={handleInputChange}
+              />
+              <span>Nombre</span>
+            </div>
+            {/* <p className="buton__container">Nombre</p>
             <input
               className="text_buscar_nombre"
               type="text"
               onChange={handleInputChange}
-            />
+            /> */}
           </div>
 
           <ul className="menu__links">

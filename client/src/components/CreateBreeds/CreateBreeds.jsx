@@ -328,7 +328,7 @@ const CreateBreeds = () => {
                   name="name"
                   onChange={handleInputChangeSearch}
                 />
-                <span>Name</span>
+                <span>Temperament</span>
               </div>
               <div className="group_btn">
                 <button
