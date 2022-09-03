@@ -18,6 +18,10 @@
 .inputs_modify{
     width: 50%;
 }
+.inputs_modify .inputs_item,
+.panel_temperaments .inputs_item{
+    padding: 0px;
+}
 .inputs_item{
     display: flex;
     flex-direction: row;

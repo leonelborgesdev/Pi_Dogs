@@ -267,7 +267,6 @@ export const modifyBreed = (breed, idbreed) => {
       body: JSON.stringify(breed),
     });
     const data = await response.json();
-    console.log(response, data);
-    return response.json();
+    return data;
   };
 };

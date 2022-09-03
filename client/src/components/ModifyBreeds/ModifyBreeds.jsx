@@ -272,7 +272,6 @@ export const ModifyBreeds = () => {
         }
       }
     }
-    console.log("breedReturn", breedReturn);
     if (
       breedReturn.name ||
       breedReturn.height ||
@@ -372,89 +371,125 @@ export const ModifyBreeds = () => {
         <div className="form_modify_breed">
           <div className="inputs_modify">
             <div className="inputs_item">
-              <h3 className="input_item_h3">Name:</h3>
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  defaultValue={breed.name ? breed.name : ""}
+                  name="name"
+                  onChange={handleInputChange}
+                />
+                <span>Nombre</span>
+              </div>
+              {/* <h3 className="input_item_h3">Name:</h3>
               <input
                 type="text"
                 defaultValue={breed.name ? breed.name : ""}
                 name="name"
                 onChange={handleInputChange}
-              />
+              /> */}
             </div>
             <div className="inputs_item">
-              <h3 className="input_item_h3">Heigth:</h3>
-              <input
-                type="text"
-                defaultValue={
-                  breed.height ? breed.height.split("-")[0].trim() : ""
-                }
-                name="height1"
-                onChange={handleInputChangeheigth}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  defaultValue={
+                    breed.height ? breed.height.split("-")[0].trim() : ""
+                  }
+                  name="height1"
+                  onChange={handleInputChangeheigth}
+                />
+                <span>Heigth</span>
+              </div>
               <h3>-</h3>
-              <input
-                type="text"
-                defaultValue={breed.height ? breed.height.split("-")[1] : ""}
-                name="height2"
-                onChange={handleInputChangeheigth}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  defaultValue={breed.height ? breed.height.split("-")[1] : ""}
+                  name="height2"
+                  onChange={handleInputChangeheigth}
+                />
+                <span>Heigth</span>
+              </div>
             </div>
             <div className="inputs_item">
-              <h3 className="input_item_h3">Weigth:</h3>
-              <input
-                type="text"
-                name="weight1"
-                defaultValue={
-                  breed.weight ? breed.weight.split("-")[0].trim() : ""
-                }
-                onChange={handleInputChangeweigth}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="weight1"
+                  defaultValue={
+                    breed.weight ? breed.weight.split("-")[0].trim() : ""
+                  }
+                  onChange={handleInputChangeweigth}
+                />
+                <span>Weigth</span>
+              </div>
               <h3>-</h3>
-              <input
-                type="text"
-                name="weight2"
-                defaultValue={breed.weight ? breed.weight.split("-")[1] : ""}
-                onChange={handleInputChangeweigth}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="weight2"
+                  defaultValue={breed.weight ? breed.weight.split("-")[1] : ""}
+                  onChange={handleInputChangeweigth}
+                />
+                <span>Weigth</span>
+              </div>
             </div>
             <div className="inputs_item">
-              <h3 className="input_item_h3">Life_span:</h3>
-              <input
-                type="text"
-                name="life_span1"
-                defaultValue={
-                  breed.life_span ? breed.life_span.split(" ")[0] : ""
-                }
-                onChange={handleInputChangelifespan}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="life_span1"
+                  defaultValue={
+                    breed.life_span ? breed.life_span.split(" ")[0] : ""
+                  }
+                  onChange={handleInputChangelifespan}
+                />
+                <span>Life_span</span>
+              </div>
               <h3>-</h3>
-              <input
-                type="text"
-                name="life_span2"
-                defaultValue={
-                  breed.life_span ? breed.life_span.split(" ")[2] : ""
-                }
-                onChange={handleInputChangelifespan}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="life_span2"
+                  defaultValue={
+                    breed.life_span ? breed.life_span.split(" ")[2] : ""
+                  }
+                  onChange={handleInputChangelifespan}
+                />
+                <span>Life_span</span>
+              </div>
             </div>
             <div className="inputs_item">
-              <h3 className="input_item_h3">Image:</h3>
-              <input
-                type="text"
-                name="image"
-                defaultValue={breed.image ? breed.image : ""}
-                onChange={handleInputChange}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="image"
+                  defaultValue={breed.image ? breed.image : ""}
+                  onChange={handleInputChange}
+                />
+                <span>Image Url</span>
+              </div>
             </div>
           </div>
           <div className="panel_temperaments">
             <div className="inputs_item">
-              <h3 className="textCreate">Nombre:</h3>
-              <input
-                type={"text"}
-                placeholder="Temperament..."
-                name="name"
-                onChange={handleInputChangeSearch}
-              />
+              <div className="form_text">
+                <input
+                  type="text"
+                  required="required"
+                  name="name"
+                  onChange={handleInputChangeSearch}
+                />
+                <span>Temperament</span>
+              </div>
             </div>
             <div className="table_temperaments">
               {temperaments_search.map((temperament) => {
